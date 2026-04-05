@@ -9,17 +9,17 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - `npx tsc --noEmit`
 
 ### Task 1: Initialize project with Vite, install dependencies, configure tooling
-- [ ] Run `npm create vite@latest . -- --template react-ts` in the project root (aurora-med folder already exists with src/assets)
-- [ ] Install dependencies: `npm install styled-components react-router-dom react-hook-form @emailjs/browser i18next react-i18next`
-- [ ] Install dev dependencies: `npm install -D @types/styled-components eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react eslint-plugin-react-hooks`
-- [ ] Configure `vite.config.ts` with path alias `@` pointing to `./src`
-- [ ] Update `tsconfig.json` and `tsconfig.app.json` with path alias `"@/*": ["./src/*"]`
-- [ ] Create `.env.example` with: `VITE_EMAILJS_SERVICE_ID=`, `VITE_EMAILJS_TEMPLATE_ID=`, `VITE_EMAILJS_PUBLIC_KEY=`
-- [ ] Create basic `.eslintrc.cjs` config for React + TypeScript
-- [ ] Add `"lint": "eslint src --ext .ts,.tsx"` to package.json scripts
-- [ ] Create `.gitignore` with node_modules, dist, .env, .DS_Store
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Run `npm create vite@latest . -- --template react-ts` in the project root (aurora-med folder already exists with src/assets)
+- [x] Install dependencies: `npm install styled-components react-router-dom react-hook-form @emailjs/browser i18next react-i18next`
+- [x] Install dev dependencies: `npm install -D @types/styled-components eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react eslint-plugin-react-hooks`
+- [x] Configure `vite.config.ts` with path alias `@` pointing to `./src`
+- [x] Update `tsconfig.json` and `tsconfig.app.json` with path alias `"@/*": ["./src/*"]`
+- [x] Create `.env.example` with: `VITE_EMAILJS_SERVICE_ID=`, `VITE_EMAILJS_TEMPLATE_ID=`, `VITE_EMAILJS_PUBLIC_KEY=`
+- [x] Create basic `.eslintrc.cjs` config for React + TypeScript
+- [x] Add `"lint": "eslint src --ext .ts,.tsx"` to package.json scripts
+- [x] Create `.gitignore` with node_modules, dist, .env, .DS_Store
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 2: Set up theme system (light + dark), global styles, and font
 - [ ] Create `src/styles/theme.ts` with two theme objects: `lightTheme` and `darkTheme`. Light theme colors: background `#F5F0E8` to `#FAF7F2`, text `#0B1026`, card white with soft shadow. Dark theme colors: background `#0B1026` to `#0F1A3E`, text `#FFFFFF` / muted `#B8C4D8`, accent `#FFFFFF` (white for buttons/borders), decorative lines/constellations `rgba(255,255,255,0.3)`. Both themes share: font family `'Urbanist', sans-serif`, breakpoints (mobile 480px, tablet 768px, desktop 1024px, wide 1280px), spacing scale, border-radius values. Export TypeScript type `Theme` for styled-components.
