@@ -17,6 +17,7 @@ export function Layout() {
     if (lang && SUPPORTED_LANGS.has(lang)) {
       void i18n.changeLanguage(lang)
       syncThemeFromLanguage(lang)
+      document.documentElement.lang = lang
     }
   }, [lang, i18n, syncThemeFromLanguage])
 
@@ -27,7 +28,7 @@ export function Layout() {
   return (
     <LayoutRoot>
       <Header />
-      <Main>
+      <Main id="site-main">
         <Outlet />
       </Main>
       <Footer />

@@ -57,4 +57,16 @@ describe('App routing', () => {
       ).toBeInTheDocument()
     })
   })
+
+  it('sets document language to match the current locale', async () => {
+    const { unmount } = renderApp('/en/contacts')
+    await waitFor(() => {
+      expect(document.documentElement.lang).toBe('en')
+    })
+    unmount()
+    renderApp('/ru')
+    await waitFor(() => {
+      expect(document.documentElement.lang).toBe('ru')
+    })
+  })
 })

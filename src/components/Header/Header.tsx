@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useThemeContext } from '@/context'
@@ -91,10 +91,50 @@ export function Header() {
   const isDark = themeMode === 'dark'
 
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuToggleRef = useRef<HTMLButtonElement>(null)
+  const mobilePanelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setMenuOpen(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    const main = document.getElementById('site-main')
+    const footer = document.getElementById('site-footer')
+    if (!main || !footer) return
+    if (menuOpen) {
+      main.setAttribute('inert', '')
+      footer.setAttribute('inert', '')
+    } else {
+      main.removeAttribute('inert')
+      footer.removeAttribute('inert')
+    }
+    return () => {
+      main.removeAttribute('inert')
+      footer.removeAttribute('inert')
+    }
+  }, [menuOpen])
+
+  useLayoutEffect(() => {
+    if (!menuOpen) return
+    const panel = mobilePanelRef.current
+    if (!panel) return
+    const firstLink = panel.querySelector<HTMLElement>('a[href]')
+    firstLink?.focus()
+  }, [menuOpen])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        setMenuOpen(false)
+        queueMicrotask(() => menuToggleRef.current?.focus())
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
 
   const pathWithoutLang =
     location.pathname.replace(/^\/(en|ru)(?=\/|$)/, '') || ''
@@ -164,6 +204,7 @@ export function Header() {
             </DesktopOnlyTheme>
 
             <MenuToggle
+              ref={menuToggleRef}
               type="button"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
@@ -178,7 +219,12 @@ export function Header() {
         </Inner>
       </HeaderBar>
 
-      <MobilePanel id="mobile-menu" $open={menuOpen} $dark={isDark}>
+      <MobilePanel
+        ref={mobilePanelRef}
+        id="mobile-menu"
+        $open={menuOpen}
+        $dark={isDark}
+      >
         <MobileNav>
           {NAV_KEYS.map(({ key, path }) => (
             <MobileNavItem

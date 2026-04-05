@@ -47,7 +47,7 @@ export function Footer() {
   const email = t('footer.email')
 
   return (
-    <FooterBar $dark={isDark}>
+    <FooterBar id="site-footer" $dark={isDark}>
       <Inner>
         <BrandBlock>
           <LogoLink to={`/${lang}`} aria-label="Aurora Med home">
