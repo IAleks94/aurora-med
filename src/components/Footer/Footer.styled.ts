@@ -16,7 +16,11 @@ export const Inner = styled.div`
   gap: ${({ theme }) => theme.spacing.lg};
   max-width: ${({ theme }) => theme.breakpoints.wide};
   margin: 0 auto;
-  padding: ${({ theme }) => `${theme.spacing.xl} ${theme.spacing.lg}`};
+  padding: ${({ theme }) =>
+    `${theme.spacing.xl} clamp(${theme.spacing.md}, 4vw, ${theme.spacing.lg})`};
+  padding-bottom: calc(
+    ${({ theme }) => theme.spacing.xl} + env(safe-area-inset-bottom, 0px)
+  );
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;

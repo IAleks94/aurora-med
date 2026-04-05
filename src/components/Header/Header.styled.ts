@@ -2,9 +2,12 @@ import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const HeaderBar = styled.header<{ $dark: boolean }>`
+  --header-height: 56px;
   position: sticky;
   top: 0;
   z-index: 100;
+  min-height: var(--header-height);
+  padding-top: env(safe-area-inset-top);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: ${({ $dark }) =>
@@ -181,12 +184,15 @@ export const MobilePanel = styled.div<{ $open: boolean; $dark: boolean }>`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     display: ${({ $open }) => ($open ? 'block' : 'none')};
     position: fixed;
-    top: 57px;
+    top: calc(var(--header-height, 56px) + env(safe-area-inset-top, 0px));
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 99;
     padding: ${({ theme }) => theme.spacing.lg};
+    padding-bottom: calc(
+      ${({ theme }) => theme.spacing.lg} + env(safe-area-inset-bottom, 0px)
+    );
     background: ${({ $dark }) =>
       $dark ? 'rgba(11, 16, 38, 0.97)' : 'rgba(250, 247, 242, 0.98)'};
     border-bottom: 1px solid ${({ theme }) => theme.colors.border};
@@ -238,6 +244,11 @@ export const MobileControls = styled.div`
   gap: ${({ theme }) => theme.spacing.md};
   padding-top: ${({ theme }) => theme.spacing.md};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
+
+  ${IconButton} {
+    min-width: 44px;
+    min-height: 44px;
+  }
 `
 
 export const DesktopOnlyTheme = styled.div`

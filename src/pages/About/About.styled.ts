@@ -13,7 +13,8 @@ export const PageHero = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  padding: ${({ theme }) =>
+    `${theme.spacing.xxl} clamp(${theme.spacing.md}, 4vw, ${theme.spacing.lg})`};
   overflow: hidden;
 `
 
@@ -62,7 +63,8 @@ export const PageHeroIntro = styled.p`
 `
 
 export const ContentSection = styled.section`
-  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  padding: ${({ theme }) =>
+    `${theme.spacing.xxl} clamp(${theme.spacing.md}, 4vw, ${theme.spacing.lg})`};
 `
 
 export const ContentInner = styled.div`

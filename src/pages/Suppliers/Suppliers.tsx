@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
 import {
   ContentInner,
   ContentSection,
@@ -91,7 +92,8 @@ export function Suppliers() {
         aria-label={t('suppliers.pageTitle')}
         data-testid="suppliers-content"
       >
-        <ContentInner>
+        <RevealOnScroll>
+          <ContentInner>
           <PartnershipBlock>
             <SectionHeading>{t('suppliers.partnershipTitle')}</SectionHeading>
             <Prose>
@@ -169,7 +171,8 @@ export function Suppliers() {
               </Button>
             </SubmitRow>
           </Form>
-        </ContentInner>
+          </ContentInner>
+        </RevealOnScroll>
       </ContentSection>
     </PageRoot>
   )

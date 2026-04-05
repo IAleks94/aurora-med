@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
 import {
   ContentInner,
   ContentSection,
@@ -98,7 +99,8 @@ export function Contacts() {
         aria-label={t('contacts.pageTitle')}
         data-testid="contacts-content"
       >
-        <ContentInner>
+        <RevealOnScroll>
+          <ContentInner>
           <ContactInfoSection data-testid="contacts-info">
             <ContactInfoGrid>
               <ContactCard>
@@ -176,7 +178,8 @@ export function Contacts() {
               </Button>
             </SubmitRow>
           </Form>
-        </ContentInner>
+          </ContentInner>
+        </RevealOnScroll>
       </ContentSection>
     </PageRoot>
   )

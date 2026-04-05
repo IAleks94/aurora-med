@@ -12,6 +12,13 @@ export const Hero = styled.section`
   justify-content: center;
   padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding-left: ${({ theme }) => theme.spacing.md};
+    padding-right: ${({ theme }) => theme.spacing.md};
+    padding-top: ${({ theme }) => theme.spacing.xl};
+    padding-bottom: ${({ theme }) => theme.spacing.xl};
+  }
 `
 
 export const HeroBackdrop = styled.div`
@@ -174,7 +181,14 @@ export const HeroCtas = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
     width: 100%;
-    max-width: 320px;
+    max-width: min(100%, 22rem);
+    align-items: stretch;
+
+    & > a,
+    & > button {
+      width: 100%;
+      max-width: none;
+    }
   }
 `
 
@@ -255,7 +269,8 @@ export const HeroSecondaryButton = styled.button`
 
 export const ProcessSection = styled.section`
   position: relative;
-  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  padding: ${({ theme }) =>
+    `${theme.spacing.xxl} clamp(${theme.spacing.md}, 4vw, ${theme.spacing.lg})`};
   background: ${({ theme }) => theme.colors.card};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
@@ -313,6 +328,24 @@ export const ProcessConnector = styled.div`
   }
 `
 
+export const ProcessVerticalConnector = styled.div`
+  display: block;
+  width: 2px;
+  height: 1.5rem;
+  flex-shrink: 0;
+  margin: ${({ theme }) => `${theme.spacing.sm} auto`};
+  background: linear-gradient(
+    180deg,
+    ${({ theme }) => theme.colors.decorative},
+    ${({ theme }) => theme.colors.border}
+  );
+  opacity: 0.85;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;
+  }
+`
+
 export const ProcessIllustration = styled.div`
   width: 7.5rem;
   height: 7.5rem;
@@ -341,7 +374,8 @@ export const ProcessStepLabel = styled.p`
 
 export const TeamSection = styled.section`
   position: relative;
-  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  padding: ${({ theme }) =>
+    `${theme.spacing.xxl} clamp(${theme.spacing.md}, 4vw, ${theme.spacing.lg})`};
   background: ${({ theme }) => theme.colors.background};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
 `
@@ -424,7 +458,8 @@ export const TeamMemberBio = styled.p`
 
 export const StatsSection = styled.section`
   position: relative;
-  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  padding: ${({ theme }) =>
+    `${theme.spacing.xxl} clamp(${theme.spacing.md}, 4vw, ${theme.spacing.lg})`};
   background: ${({ theme }) => theme.colors.card};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
 `

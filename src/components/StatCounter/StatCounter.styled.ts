@@ -15,6 +15,10 @@ export const Root = styled.div<{ $showDivider: boolean }>`
     border-left: 1px solid ${theme.colors.border};
   `
       : ''}
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    border-left: none;
+  }
 `
 
 export const Value = styled.span`

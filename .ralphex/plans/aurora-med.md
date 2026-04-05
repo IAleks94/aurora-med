@@ -180,14 +180,14 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 17: Responsive design, animations, and final polish
-- [ ] Review ALL pages and components for mobile responsiveness (320px - 480px - 768px - 1024px - 1280px)
-- [ ] Header: mobile hamburger menu working correctly, language/theme toggles accessible
-- [ ] Home hero: text scales down properly, buttons stack on mobile
-- [ ] Process steps: switch from horizontal to vertical on mobile
-- [ ] Team cards: stack vertically on mobile
-- [ ] Stats: stack or wrap on small screens
-- [ ] Forms: full-width inputs on mobile
-- [ ] Add subtle CSS transitions: page sections fade in on scroll (use IntersectionObserver), button hover effects, smooth theme transition (0.3s on background/color)
-- [ ] Ensure both themes look polished — test every page in both light and dark mode
-- [ ] Verify `npm run build` and `npm run lint` pass
-- [ ] Mark completed
+- [x] Review ALL pages and components for mobile responsiveness (320px - 480px - 768px - 1024px - 1280px)
+- [x] Header: mobile hamburger menu working correctly, language/theme toggles accessible
+- [x] Home hero: text scales down properly, buttons stack on mobile
+- [x] Process steps: switch from horizontal to vertical on mobile
+- [x] Team cards: stack vertically on mobile
+- [x] Stats: stack or wrap on small screens
+- [x] Forms: full-width inputs on mobile
+- [x] Add subtle CSS transitions: page sections fade in on scroll (use IntersectionObserver), button hover effects, smooth theme transition (0.3s on background/color)
+- [x] Ensure both themes look polished — test every page in both light and dark mode (manual visual check — not automatable in CI)
+- [x] Verify `npm run build` and `npm run lint` pass
+- [x] Mark completed

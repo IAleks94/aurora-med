@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
 import { SectionTitle } from '@/components/SectionTitle'
 import alexandraKireeva from '@/assets/images/team/alexandra-kireeva.png'
 import irinaKorotkova from '@/assets/images/team/irina-korotkova.png'
@@ -81,13 +82,15 @@ export function About() {
         aria-labelledby="about-story-heading"
         data-testid="about-story"
       >
-        <ContentInner>
-          <SectionHeading id="about-story-heading">{t('about.storyTitle')}</SectionHeading>
-          <Prose>
-            <p>{t('founder.story')}</p>
-            <p>{t('about.storyBody')}</p>
-          </Prose>
-        </ContentInner>
+        <RevealOnScroll>
+          <ContentInner>
+            <SectionHeading id="about-story-heading">{t('about.storyTitle')}</SectionHeading>
+            <Prose>
+              <p>{t('founder.story')}</p>
+              <p>{t('about.storyBody')}</p>
+            </Prose>
+          </ContentInner>
+        </RevealOnScroll>
       </ContentSection>
 
       <ContentSection
@@ -95,12 +98,14 @@ export function About() {
         aria-labelledby="about-mission-heading"
         data-testid="about-mission"
       >
-        <ContentInner>
-          <SectionHeading id="about-mission-heading">{t('about.missionTitle')}</SectionHeading>
-          <Prose>
-            <p>{t('about.missionBody')}</p>
-          </Prose>
-        </ContentInner>
+        <RevealOnScroll>
+          <ContentInner>
+            <SectionHeading id="about-mission-heading">{t('about.missionTitle')}</SectionHeading>
+            <Prose>
+              <p>{t('about.missionBody')}</p>
+            </Prose>
+          </ContentInner>
+        </RevealOnScroll>
       </ContentSection>
 
       <ContentSection
@@ -108,17 +113,19 @@ export function About() {
         aria-labelledby="about-values-heading"
         data-testid="about-values"
       >
-        <ContentInner>
-          <SectionHeading id="about-values-heading">{t('about.valuesTitle')}</SectionHeading>
-          <ValuesGrid>
-            {values.map(({ titleKey, bodyKey }) => (
-              <Card key={titleKey} padding="lg">
-                <ValueCardTitle>{t(titleKey)}</ValueCardTitle>
-                <ValueCardBody>{t(bodyKey)}</ValueCardBody>
-              </Card>
-            ))}
-          </ValuesGrid>
-        </ContentInner>
+        <RevealOnScroll>
+          <ContentInner>
+            <SectionHeading id="about-values-heading">{t('about.valuesTitle')}</SectionHeading>
+            <ValuesGrid>
+              {values.map(({ titleKey, bodyKey }) => (
+                <Card key={titleKey} padding="lg">
+                  <ValueCardTitle>{t(titleKey)}</ValueCardTitle>
+                  <ValueCardBody>{t(bodyKey)}</ValueCardBody>
+                </Card>
+              ))}
+            </ValuesGrid>
+          </ContentInner>
+        </RevealOnScroll>
       </ContentSection>
 
       <ContentSection
@@ -126,30 +133,32 @@ export function About() {
         aria-labelledby="about-team-heading"
         data-testid="about-team"
       >
-        <ContentInner>
-          <SectionTitle>
-            <span id="about-team-heading">{t('about.teamSectionTitle')}</span>
-          </SectionTitle>
-          <TeamGrid>
-            {teamMembers.map(({ key, imageSrc, name, role, longDescription }) => (
-              <Card key={key} padding="lg">
-                <TeamCardBody>
-                  <TeamPortraitWrap>
-                    <TeamPortraitImg
-                      src={imageSrc}
-                      alt={name}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </TeamPortraitWrap>
-                  <TeamMemberName>{name}</TeamMemberName>
-                  <TeamMemberRole>{role}</TeamMemberRole>
-                  <TeamMemberBio>{longDescription}</TeamMemberBio>
-                </TeamCardBody>
-              </Card>
-            ))}
-          </TeamGrid>
-        </ContentInner>
+        <RevealOnScroll>
+          <ContentInner>
+            <SectionTitle>
+              <span id="about-team-heading">{t('about.teamSectionTitle')}</span>
+            </SectionTitle>
+            <TeamGrid>
+              {teamMembers.map(({ key, imageSrc, name, role, longDescription }) => (
+                <Card key={key} padding="lg">
+                  <TeamCardBody>
+                    <TeamPortraitWrap>
+                      <TeamPortraitImg
+                        src={imageSrc}
+                        alt={name}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </TeamPortraitWrap>
+                    <TeamMemberName>{name}</TeamMemberName>
+                    <TeamMemberRole>{role}</TeamMemberRole>
+                    <TeamMemberBio>{longDescription}</TeamMemberBio>
+                  </TeamCardBody>
+                </Card>
+              ))}
+            </TeamGrid>
+          </ContentInner>
+        </RevealOnScroll>
       </ContentSection>
     </PageRoot>
   )

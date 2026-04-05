@@ -7,6 +7,8 @@ const spin = keyframes`
 `
 
 export const Form = styled.form`
+  width: 100%;
+  min-width: 0;
   max-width: 36rem;
   margin: 0 auto;
   display: flex;

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
 import {
   ContentInner,
   ContentSection,
@@ -90,7 +91,8 @@ export function OrderForm() {
         aria-label={t('order.pageTitle')}
         data-testid="order-form-section"
       >
-        <ContentInner>
+        <RevealOnScroll>
+          <ContentInner>
           {success ? (
             <MessageBanner $variant="success" role="status" data-testid="order-success">
               {t('order.success')}
@@ -167,7 +169,8 @@ export function OrderForm() {
               </Button>
             </SubmitRow>
           </Form>
-        </ContentInner>
+          </ContentInner>
+        </RevealOnScroll>
       </ContentSection>
     </PageRoot>
   )

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Accordion, type AccordionItemData } from '@/components/Accordion'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
 import {
   ContentInner,
   ContentSection,
@@ -54,22 +55,24 @@ export function FAQ() {
         data-testid="faq-content"
       >
         <ContentInner>
-          <FaqBlocks>
-            <CategoryBlock data-testid="faq-category-funds">
-              <CategoryHeading>{t('faq.categories.funds')}</CategoryHeading>
-              <Accordion items={fundsItems} />
-            </CategoryBlock>
+          <RevealOnScroll>
+            <FaqBlocks>
+              <CategoryBlock data-testid="faq-category-funds">
+                <CategoryHeading>{t('faq.categories.funds')}</CategoryHeading>
+                <Accordion items={fundsItems} />
+              </CategoryBlock>
 
-            <CategoryBlock data-testid="faq-category-suppliers">
-              <CategoryHeading>{t('faq.categories.suppliers')}</CategoryHeading>
-              <Accordion items={suppliersItems} />
-            </CategoryBlock>
+              <CategoryBlock data-testid="faq-category-suppliers">
+                <CategoryHeading>{t('faq.categories.suppliers')}</CategoryHeading>
+                <Accordion items={suppliersItems} />
+              </CategoryBlock>
 
-            <CategoryBlock data-testid="faq-category-general">
-              <CategoryHeading>{t('faq.categories.general')}</CategoryHeading>
-              <Accordion items={generalItems} />
-            </CategoryBlock>
-          </FaqBlocks>
+              <CategoryBlock data-testid="faq-category-general">
+                <CategoryHeading>{t('faq.categories.general')}</CategoryHeading>
+                <Accordion items={generalItems} />
+              </CategoryBlock>
+            </FaqBlocks>
+          </RevealOnScroll>
         </ContentInner>
       </ContentSection>
     </PageRoot>

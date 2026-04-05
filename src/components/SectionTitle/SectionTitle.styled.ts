@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.h2`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: ${({ theme }) => theme.spacing.md};
+  row-gap: ${({ theme }) => theme.spacing.sm};
   text-align: center;
   margin: 0;
   padding: 0 ${({ theme }) => theme.spacing.md};

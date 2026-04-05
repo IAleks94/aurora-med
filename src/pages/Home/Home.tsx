@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
 import { SectionTitle } from '@/components/SectionTitle'
 import { StatCounter } from '@/components/StatCounter'
 import alexandraKireeva from '@/assets/images/team/alexandra-kireeva.png'
@@ -24,6 +25,7 @@ import {
   ProcessStep,
   ProcessStepLabel,
   ProcessSteps,
+  ProcessVerticalConnector,
   TeamCardBody,
   TeamGrid,
   TeamInner,
@@ -129,25 +131,30 @@ export function Home() {
         aria-labelledby="process-heading"
         data-testid="home-process"
       >
-        <ProcessInner>
-          <SectionTitle>
-            <span id="process-heading">{t('process.title')}</span>
-          </SectionTitle>
-          <ProcessSteps>
-            {processSteps.flatMap((label, index) => {
-              const nodes = [
-                <ProcessStep key={`step-${index}`}>
-                  <ProcessIllustration aria-hidden>{index + 1}</ProcessIllustration>
-                  <ProcessStepLabel>{label}</ProcessStepLabel>
-                </ProcessStep>,
-              ]
-              if (index < processSteps.length - 1) {
-                nodes.push(<ProcessConnector key={`conn-${index}`} aria-hidden />)
-              }
-              return nodes
-            })}
-          </ProcessSteps>
-        </ProcessInner>
+        <RevealOnScroll>
+          <ProcessInner>
+            <SectionTitle>
+              <span id="process-heading">{t('process.title')}</span>
+            </SectionTitle>
+            <ProcessSteps>
+              {processSteps.flatMap((label, index) => {
+                const nodes = [
+                  <ProcessStep key={`step-${index}`}>
+                    <ProcessIllustration aria-hidden>{index + 1}</ProcessIllustration>
+                    <ProcessStepLabel>{label}</ProcessStepLabel>
+                  </ProcessStep>,
+                ]
+                if (index < processSteps.length - 1) {
+                  nodes.push(
+                    <ProcessVerticalConnector key={`vconn-${index}`} aria-hidden />,
+                  )
+                  nodes.push(<ProcessConnector key={`conn-${index}`} aria-hidden />)
+                }
+                return nodes
+              })}
+            </ProcessSteps>
+          </ProcessInner>
+        </RevealOnScroll>
       </ProcessSection>
       <TeamSection
         id="team"
@@ -156,30 +163,32 @@ export function Home() {
         aria-labelledby="team-heading"
         data-testid="home-team"
       >
-        <TeamInner>
-          <SectionTitle>
-            <span id="team-heading">{t('team.title')}</span>
-          </SectionTitle>
-          <TeamGrid>
-            {teamMembers.map(({ key, imageSrc, name, role, description }) => (
-              <Card key={key} padding="lg">
-                <TeamCardBody>
-                  <TeamPortraitWrap>
-                    <TeamPortraitImg
-                      src={imageSrc}
-                      alt={name}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </TeamPortraitWrap>
-                  <TeamMemberName>{name}</TeamMemberName>
-                  <TeamMemberRole>{role}</TeamMemberRole>
-                  <TeamMemberBio>{description}</TeamMemberBio>
-                </TeamCardBody>
-              </Card>
-            ))}
-          </TeamGrid>
-        </TeamInner>
+        <RevealOnScroll>
+          <TeamInner>
+            <SectionTitle>
+              <span id="team-heading">{t('team.title')}</span>
+            </SectionTitle>
+            <TeamGrid>
+              {teamMembers.map(({ key, imageSrc, name, role, description }) => (
+                <Card key={key} padding="lg">
+                  <TeamCardBody>
+                    <TeamPortraitWrap>
+                      <TeamPortraitImg
+                        src={imageSrc}
+                        alt={name}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </TeamPortraitWrap>
+                    <TeamMemberName>{name}</TeamMemberName>
+                    <TeamMemberRole>{role}</TeamMemberRole>
+                    <TeamMemberBio>{description}</TeamMemberBio>
+                  </TeamCardBody>
+                </Card>
+              ))}
+            </TeamGrid>
+          </TeamInner>
+        </RevealOnScroll>
       </TeamSection>
       <StatsSection
         id="stats"
@@ -188,20 +197,22 @@ export function Home() {
         aria-labelledby="stats-heading"
         data-testid="home-stats"
       >
-        <StatsInner>
-          <VisuallyHiddenH2 id="stats-heading">{t('stats.heading')}</VisuallyHiddenH2>
-          <StatsRow>
-            <StatCounter value="48" label={t('stats.cases')} />
-            <StatCounter value="12" label={t('stats.countries')} showDivider />
-            <StatCounter value="30+" label={t('stats.partners')} showDivider />
-          </StatsRow>
-          <StatsSince>{t('stats.since')}</StatsSince>
-          <FounderQuoteBlock>
-            <QuoteMark aria-hidden>&ldquo;</QuoteMark>
-            <QuoteText>{t('founder.quote')}</QuoteText>
-            <QuoteAttribution>— {t('founder.attribution')}</QuoteAttribution>
-          </FounderQuoteBlock>
-        </StatsInner>
+        <RevealOnScroll>
+          <StatsInner>
+            <VisuallyHiddenH2 id="stats-heading">{t('stats.heading')}</VisuallyHiddenH2>
+            <StatsRow>
+              <StatCounter value="48" label={t('stats.cases')} />
+              <StatCounter value="12" label={t('stats.countries')} showDivider />
+              <StatCounter value="30+" label={t('stats.partners')} showDivider />
+            </StatsRow>
+            <StatsSince>{t('stats.since')}</StatsSince>
+            <FounderQuoteBlock>
+              <QuoteMark aria-hidden>&ldquo;</QuoteMark>
+              <QuoteText>{t('founder.quote')}</QuoteText>
+              <QuoteAttribution>— {t('founder.attribution')}</QuoteAttribution>
+            </FounderQuoteBlock>
+          </StatsInner>
+        </RevealOnScroll>
       </StatsSection>
     </>
   )
