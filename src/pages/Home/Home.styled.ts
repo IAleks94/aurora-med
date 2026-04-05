@@ -338,3 +338,86 @@ export const ProcessStepLabel = styled.p`
   color: ${({ theme }) => theme.colors.text};
   max-width: 14rem;
 `
+
+export const TeamSection = styled.section`
+  position: relative;
+  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  background: ${({ theme }) => theme.colors.background};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+`
+
+export const TeamInner = styled.div`
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.xl};
+`
+
+export const TeamGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${({ theme }) => theme.spacing.xl};
+  width: 100%;
+  align-items: stretch;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: ${({ theme }) => theme.spacing.lg};
+  }
+`
+
+export const TeamPortraitWrap = styled.div`
+  width: 11rem;
+  height: 11rem;
+  margin: 0 auto ${({ theme }) => theme.spacing.md};
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid ${({ theme }) => theme.colors.border};
+  box-shadow: ${({ theme }) => theme.colors.cardShadow};
+  background: ${({ theme }) => theme.colors.card};
+`
+
+export const TeamPortraitImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+`
+
+export const TeamCardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+`
+
+export const TeamMemberName = styled.h3`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: 600;
+  font-size: clamp(1.0625rem, 2vw, 1.125rem);
+  line-height: 1.3;
+  color: ${({ theme }) => theme.colors.text};
+  letter-spacing: 0.02em;
+`
+
+export const TeamMemberRole = styled.p`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: ${({ theme }) => theme.colors.textMuted};
+`
+
+export const TeamMemberBio = styled.p`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: ${({ theme }) => theme.colors.text};
+  max-width: 22rem;
+`

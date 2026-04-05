@@ -114,15 +114,15 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 10: Build Home page — Team section with portraits
-- [ ] Add team section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
-- [ ] Section title: "Наши специалисты" / "Operational network"
-- [ ] 3 team member cards in a row (desktop) or stacked (mobile). Each card contains: portrait image (circular or rounded), name, role, short description. All text from i18n.
-- [ ] Portrait images: `src/assets/images/team/alexandra-kireeva.png`, `src/assets/images/team/irina-korotkova.png`, `src/assets/images/team/sofia-fleishman.png`. These are black-and-white ink-style illustrations (New Yorker style) — display them as-is, with a subtle circular crop or rounded frame.
-- [ ] Alexandra Kireeva — Founder / Основатель
-- [ ] Irina Korotkova — Funds Manager / Сотрудник по работе с фондами
-- [ ] Sofia Fleishman — Chief Procurement Officer
-- [ ] Verify renders correctly with images
-- [ ] Mark completed
+- [x] Add team section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
+- [x] Section title: "Наши специалисты" / "Operational network"
+- [x] 3 team member cards in a row (desktop) or stacked (mobile). Each card contains: portrait image (circular or rounded), name, role, short description. All text from i18n.
+- [x] Portrait images: `src/assets/images/team/alexandra-kireeva.png`, `src/assets/images/team/irina-korotkova.png`, `src/assets/images/team/sofia-fleishman.png`. These are black-and-white ink-style illustrations (New Yorker style) — display them as-is, with a subtle circular crop or rounded frame.
+- [x] Alexandra Kireeva — Founder / Основатель
+- [x] Irina Korotkova — Funds Manager / Сотрудник по работе с фондами
+- [x] Sofia Fleishman — Chief Procurement Officer
+- [x] Verify renders correctly with images
+- [x] Mark completed
 
 ### Task 11: Build Home page — Statistics section and Founder quote
 - [ ] Add stats section to `src/pages/Home/Home.tsx` and `Home.styled.ts`

@@ -1,7 +1,11 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Card } from '@/components/Card'
 import { SectionTitle } from '@/components/SectionTitle'
+import alexandraKireeva from '@/assets/images/team/alexandra-kireeva.png'
+import irinaKorotkova from '@/assets/images/team/irina-korotkova.png'
+import sofiaFleishman from '@/assets/images/team/sofia-fleishman.png'
 import {
   Hero,
   HeroBackdrop,
@@ -19,7 +23,25 @@ import {
   ProcessStep,
   ProcessStepLabel,
   ProcessSteps,
+  TeamCardBody,
+  TeamGrid,
+  TeamInner,
+  TeamMemberBio,
+  TeamMemberName,
+  TeamMemberRole,
+  TeamPortraitImg,
+  TeamPortraitWrap,
+  TeamSection,
 } from './Home.styled'
+
+const TEAM_MEMBER_KEYS = ['alexandra', 'irina', 'sofia'] as const
+type TeamMemberKey = (typeof TEAM_MEMBER_KEYS)[number]
+
+const TEAM_IMAGES: Record<TeamMemberKey, string> = {
+  alexandra: alexandraKireeva,
+  irina: irinaKorotkova,
+  sofia: sofiaFleishman,
+}
 
 function ConstellationLines() {
   return (
@@ -49,6 +71,18 @@ export function Home() {
     t('process.step3'),
     t('process.step4'),
   ] as const
+
+  const teamMembers = useMemo(
+    () =>
+      TEAM_MEMBER_KEYS.map((key) => ({
+        key,
+        imageSrc: TEAM_IMAGES[key],
+        name: t(`team.${key}.name`),
+        role: t(`team.${key}.role`),
+        description: t(`team.${key}.description`),
+      })),
+    [t],
+  )
 
   return (
     <>
@@ -105,6 +139,38 @@ export function Home() {
           </ProcessSteps>
         </ProcessInner>
       </ProcessSection>
+      <TeamSection
+        id="team"
+        tabIndex={-1}
+        role="region"
+        aria-labelledby="team-heading"
+        data-testid="home-team"
+      >
+        <TeamInner>
+          <SectionTitle>
+            <span id="team-heading">{t('team.title')}</span>
+          </SectionTitle>
+          <TeamGrid>
+            {teamMembers.map(({ key, imageSrc, name, role, description }) => (
+              <Card key={key} padding="lg">
+                <TeamCardBody>
+                  <TeamPortraitWrap>
+                    <TeamPortraitImg
+                      src={imageSrc}
+                      alt={name}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </TeamPortraitWrap>
+                  <TeamMemberName>{name}</TeamMemberName>
+                  <TeamMemberRole>{role}</TeamMemberRole>
+                  <TeamMemberBio>{description}</TeamMemberBio>
+                </TeamCardBody>
+              </Card>
+            ))}
+          </TeamGrid>
+        </TeamInner>
+      </TeamSection>
     </>
   )
 }

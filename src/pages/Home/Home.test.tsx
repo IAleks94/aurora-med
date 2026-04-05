@@ -94,3 +94,43 @@ describe('Home process section', () => {
     expect(within(region).getByText('Organize delivery')).toBeInTheDocument()
   })
 })
+
+describe('Home team section', () => {
+  it('renders team title and three members in Russian', async () => {
+    await renderHome('/ru')
+    const region = screen.getByTestId('home-team')
+    expect(region).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /наши специалисты/i }),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /александра киреева/i }),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /ирина короткова/i }),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /sofia fleishman/i }),
+    ).toBeInTheDocument()
+    expect(within(region).getByText(/основатель/i)).toBeInTheDocument()
+    const imgs = within(region).getAllByRole('img')
+    expect(imgs).toHaveLength(3)
+  })
+
+  it('renders team title and three members in English', async () => {
+    await renderHome('/en')
+    const region = screen.getByTestId('home-team')
+    expect(
+      within(region).getByRole('heading', { name: /operational network/i }),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /alexandra kireeva/i }),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /irina korotkova/i }),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /sofia fleishman/i }),
+    ).toBeInTheDocument()
+  })
+})
