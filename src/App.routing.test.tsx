@@ -47,6 +47,15 @@ describe('App routing', () => {
     ).toBeInTheDocument()
   })
 
+  it('redirects unsupported language but keeps the path after the first segment', async () => {
+    renderApp('/xx/about')
+    await waitFor(() => {
+      expect(
+        within(screen.getByRole('main')).getByRole('heading', { name: /о компании/i }),
+      ).toBeInTheDocument()
+    })
+  })
+
   it('redirects unknown path under a valid language to that language home', async () => {
     renderApp('/en/not-a-valid-route')
     await waitFor(() => {

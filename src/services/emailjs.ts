@@ -21,6 +21,10 @@ const FORM_ENV_SUFFIX: Record<FormTypeKey, string> = {
   supplier_inquiry: 'SUPPLIER',
 }
 
+function isFormTypeKey(value: string): value is FormTypeKey {
+  return (FORM_TYPE_KEYS as readonly string[]).includes(value)
+}
+
 export type EmailTemplateEnv = {
   defaultTemplateId: string | undefined
   byFormType: Partial<Record<FormTypeKey, string | undefined>>
@@ -49,11 +53,11 @@ export function resolveTemplateId(
     return env.defaultTemplateId
   }
 
-  if (!(formType in env.byFormType)) {
+  if (!isFormTypeKey(formType)) {
     return env.defaultTemplateId
   }
 
-  const key = formType as FormTypeKey
+  const key = formType
   const specific = env.byFormType[key]
   if (specific) {
     return specific

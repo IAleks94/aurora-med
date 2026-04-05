@@ -70,6 +70,20 @@ describe('emailjs service', () => {
     ).toBe('only_template')
   })
 
+  it('resolveTemplateId ignores prototype property names mistaken for form_type', () => {
+    expect(
+      resolveTemplateId(
+        { form_type: 'toString', email: 'z@z.com' },
+        {
+          defaultTemplateId: 'only_template',
+          byFormType: {
+            order_request: 'order_tpl',
+          },
+        },
+      ),
+    ).toBe('only_template')
+  })
+
   it('uses per-form template id when form_type is set', async () => {
     await sendEmail({
       form_type: 'order_request',
