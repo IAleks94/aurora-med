@@ -82,8 +82,8 @@ const defaultTemplateEnv: EmailTemplateEnv = {
 /**
  * Resolves which EmailJS template id to use. Overridable in tests via `env`.
  * If any per-form template id is set but the id for the current `form_type` is missing,
- * falls back to `defaultTemplateId` when set (with a dev warning); otherwise returns undefined
- * so sendEmail surfaces a single configuration error.
+ * falls back to `defaultTemplateId` when set (with a dev warning). If `defaultTemplateId`
+ * is also unset, returns undefined so sendEmail fails — never uses another form's template.
  */
 export function resolveTemplateId(
   templateParams: Record<string, string>,
@@ -116,18 +116,6 @@ export function resolveTemplateId(
       )
     }
     return env.defaultTemplateId
-  }
-
-  const anyOtherTemplate = FORM_TYPE_KEYS.map((k) => env.byFormType[k]).find(
-    Boolean,
-  )
-  if (anyOtherTemplate) {
-    if (import.meta.env.DEV) {
-      console.warn(
-        `[EmailJS] No default template id; using another configured template for form_type "${formType}". Set VITE_EMAILJS_TEMPLATE_ID or VITE_EMAILJS_TEMPLATE_ID_${FORM_ENV_SUFFIX[key]}.`,
-      )
-    }
-    return anyOtherTemplate
   }
 
   if (import.meta.env.DEV) {

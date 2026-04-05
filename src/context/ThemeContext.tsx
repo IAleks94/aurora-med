@@ -120,8 +120,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       if (stored === 'dark' || stored === 'light') {
         setUserHasOverriddenTheme(true)
         setThemeModeState(stored)
+        return
       }
-      return
+      try {
+        window.localStorage.removeItem(STORAGE_OVERRIDE)
+      } catch {
+        // ignore
+      }
     }
     const mode = getDefaultThemeModeForLanguage(lang)
     try {
