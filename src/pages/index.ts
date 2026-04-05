@@ -1,0 +1,6 @@
+export { About } from './About'
+export { Contacts } from './Contacts'
+export { FAQ } from './FAQ'
+export { Home } from './Home'
+export { OrderForm } from './OrderForm'
+export { Suppliers } from './Suppliers'

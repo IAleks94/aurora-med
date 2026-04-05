@@ -1,10 +1,27 @@
-function App() {
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { Layout } from '@/components/Layout'
+import {
+  About,
+  Contacts,
+  FAQ,
+  Home,
+  OrderForm,
+  Suppliers,
+} from '@/pages'
+
+export default function App() {
   return (
-    <main>
-      <h1>Aurora Med</h1>
-      <p>B2B platform for rare disease therapies.</p>
-    </main>
+    <Routes>
+      <Route path="/" element={<Navigate to="/ru" replace />} />
+      <Route path="/:lang" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="order" element={<OrderForm />} />
+        <Route path="suppliers" element={<Suppliers />} />
+        <Route path="contacts" element={<Contacts />} />
+        <Route path="faq" element={<FAQ />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/ru" replace />} />
+    </Routes>
   )
 }
-
-export default App

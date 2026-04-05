@@ -1,10 +1,32 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import { ThemeProvider } from '@/context'
 import App from './App'
 
+function renderApp(initialPath: string) {
+  return render(
+    <MemoryRouter initialEntries={[initialPath]}>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </MemoryRouter>,
+  )
+}
+
 describe('App', () => {
-  it('renders the app title', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { name: /aurora med/i })).toBeInTheDocument()
+  it('renders Home at /ru', () => {
+    renderApp('/ru')
+    expect(screen.getByText('Home')).toBeInTheDocument()
+  })
+
+  it('renders About at /en/about', () => {
+    renderApp('/en/about')
+    expect(screen.getByText('About')).toBeInTheDocument()
+  })
+
+  it('renders OrderForm at /ru/order', () => {
+    renderApp('/ru/order')
+    expect(screen.getByText('OrderForm')).toBeInTheDocument()
   })
 })

@@ -55,13 +55,13 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 4: Set up routing with language prefixes and create App shell
-- [ ] Create `src/App.tsx` with React Router v6. Routes structure: `/:lang/*` where lang is `ru` or `en`. Nested routes: `/` (Home), `/about`, `/order`, `/suppliers`, `/contacts`, `/faq`. Redirect root `/` to `/ru`. Wrap everything in a `Layout` component with Header and Footer.
-- [ ] Create placeholder page components (just return the page name for now) in their folders: `src/pages/Home/Home.tsx`, `src/pages/About/About.tsx`, `src/pages/OrderForm/OrderForm.tsx`, `src/pages/Suppliers/Suppliers.tsx`, `src/pages/Contacts/Contacts.tsx`, `src/pages/FAQ/FAQ.tsx`
-- [ ] Create `index.ts` barrel exports for each page folder and `src/pages/index.ts` for all pages
-- [ ] Create `src/components/Layout/Layout.tsx` — renders Header, `<Outlet />`, Footer. Create `src/components/Layout/Layout.styled.ts` and `src/components/Layout/index.ts`.
-- [ ] On route change: detect language from URL param `:lang`, call `i18n.changeLanguage(lang)`, and set default theme (light for ru, dark for en) unless user has overridden in localStorage
-- [ ] Verify `npm run build` passes and all routes render
-- [ ] Mark completed
+- [x] Create `src/App.tsx` with React Router v6. Routes structure: `/:lang/*` where lang is `ru` or `en`. Nested routes: `/` (Home), `/about`, `/order`, `/suppliers`, `/contacts`, `/faq`. Redirect root `/` to `/ru`. Wrap everything in a `Layout` component with Header and Footer.
+- [x] Create placeholder page components (just return the page name for now) in their folders: `src/pages/Home/Home.tsx`, `src/pages/About/About.tsx`, `src/pages/OrderForm/OrderForm.tsx`, `src/pages/Suppliers/Suppliers.tsx`, `src/pages/Contacts/Contacts.tsx`, `src/pages/FAQ/FAQ.tsx`
+- [x] Create `index.ts` barrel exports for each page folder and `src/pages/index.ts` for all pages
+- [x] Create `src/components/Layout/Layout.tsx` — renders Header, `<Outlet />`, Footer. Create `src/components/Layout/Layout.styled.ts` and `src/components/Layout/index.ts`.
+- [x] On route change: detect language from URL param `:lang`, call `i18n.changeLanguage(lang)`, and set default theme (light for ru, dark for en) unless user has overridden in localStorage
+- [x] Verify `npm run build` passes and all routes render
+- [x] Mark completed
 
 ### Task 5: Build Header component with navigation, language and theme toggles
 - [ ] Create `src/components/Header/Header.tsx` and `src/components/Header/Header.styled.ts`
