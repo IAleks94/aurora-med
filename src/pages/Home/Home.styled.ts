@@ -421,3 +421,111 @@ export const TeamMemberBio = styled.p`
   color: ${({ theme }) => theme.colors.text};
   max-width: 22rem;
 `
+
+export const StatsSection = styled.section`
+  position: relative;
+  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  background: ${({ theme }) => theme.colors.card};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+`
+
+export const StatsInner = styled.div`
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.xl};
+`
+
+export const StatsRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: ${({ theme }) => theme.spacing.lg};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    gap: 0;
+
+    & > div {
+      border-left: none;
+      padding-left: ${({ theme }) => theme.spacing.md};
+      padding-right: ${({ theme }) => theme.spacing.md};
+    }
+
+    & > div:not(:first-child) {
+      border-top: 1px solid ${({ theme }) => theme.colors.border};
+      margin-top: ${({ theme }) => theme.spacing.md};
+      padding-top: ${({ theme }) => theme.spacing.lg};
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+  }
+`
+
+export const StatsSince = styled.p`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: 500;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.textMuted};
+  max-width: 40rem;
+  line-height: 1.5;
+`
+
+export const FounderQuoteBlock = styled.blockquote`
+  margin: 0;
+  padding: 0;
+  max-width: 42rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.md};
+`
+
+export const QuoteMark = styled.span`
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  line-height: 0.85;
+  color: ${({ theme }) => theme.colors.decorative};
+  user-select: none;
+`
+
+export const QuoteText = styled.p`
+  margin: 0;
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.text};
+`
+
+export const QuoteAttribution = styled.cite`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+  color: ${({ theme }) => theme.colors.textMuted};
+`
+
+export const VisuallyHiddenH2 = styled.h2`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`

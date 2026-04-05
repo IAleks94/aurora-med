@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Card } from '@/components/Card'
 import { SectionTitle } from '@/components/SectionTitle'
+import { StatCounter } from '@/components/StatCounter'
 import alexandraKireeva from '@/assets/images/team/alexandra-kireeva.png'
 import irinaKorotkova from '@/assets/images/team/irina-korotkova.png'
 import sofiaFleishman from '@/assets/images/team/sofia-fleishman.png'
@@ -32,6 +33,15 @@ import {
   TeamPortraitImg,
   TeamPortraitWrap,
   TeamSection,
+  StatsSection,
+  StatsInner,
+  StatsRow,
+  StatsSince,
+  FounderQuoteBlock,
+  QuoteMark,
+  QuoteText,
+  QuoteAttribution,
+  VisuallyHiddenH2,
 } from './Home.styled'
 
 const TEAM_MEMBER_KEYS = ['alexandra', 'irina', 'sofia'] as const
@@ -171,6 +181,28 @@ export function Home() {
           </TeamGrid>
         </TeamInner>
       </TeamSection>
+      <StatsSection
+        id="stats"
+        tabIndex={-1}
+        role="region"
+        aria-labelledby="stats-heading"
+        data-testid="home-stats"
+      >
+        <StatsInner>
+          <VisuallyHiddenH2 id="stats-heading">{t('stats.heading')}</VisuallyHiddenH2>
+          <StatsRow>
+            <StatCounter value="48" label={t('stats.cases')} />
+            <StatCounter value="12" label={t('stats.countries')} showDivider />
+            <StatCounter value="30+" label={t('stats.partners')} showDivider />
+          </StatsRow>
+          <StatsSince>{t('stats.since')}</StatsSince>
+          <FounderQuoteBlock>
+            <QuoteMark aria-hidden>&ldquo;</QuoteMark>
+            <QuoteText>{t('founder.quote')}</QuoteText>
+            <QuoteAttribution>— {t('founder.attribution')}</QuoteAttribution>
+          </FounderQuoteBlock>
+        </StatsInner>
+      </StatsSection>
     </>
   )
 }

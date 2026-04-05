@@ -125,12 +125,12 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 11: Build Home page — Statistics section and Founder quote
-- [ ] Add stats section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
-- [ ] 3 statistics in a horizontal row using `StatCounter` component: "48" (кейсов сопровождено / cases coordinated), "12" (стран поставки / countries supplied), "30+" (партнёров / partners). Separated by thin vertical lines.
-- [ ] Below stats: "С 2024 г. · Совмещённый опыт команды: 15+ лет" / "Since 2024 · Combined experience: 15+ years"
-- [ ] **Founder quote block**: Large decorative opening quote mark ("), italic text of the founder's quote from i18n, attributed to Alexandra Kireeva. Style: centered, slightly larger font, italic Urbanist.
-- [ ] Verify renders correctly
-- [ ] Mark completed
+- [x] Add stats section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
+- [x] 3 statistics in a horizontal row using `StatCounter` component: "48" (кейсов сопровождено / cases coordinated), "12" (стран поставки / countries supplied), "30+" (партнёров / partners). Separated by thin vertical lines.
+- [x] Below stats: "С 2024 г. · Совмещённый опыт команды: 15+ лет" / "Since 2024 · Combined experience: 15+ years"
+- [x] **Founder quote block**: Large decorative opening quote mark ("), italic text of the founder's quote from i18n, attributed to Alexandra Kireeva. Style: centered, slightly larger font, italic Urbanist.
+- [x] Verify renders correctly
+- [x] Mark completed
 
 ### Task 12: Build About page
 - [ ] Create full content for `src/pages/About/About.tsx` and `About.styled.ts`

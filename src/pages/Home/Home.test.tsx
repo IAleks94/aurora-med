@@ -134,3 +134,47 @@ describe('Home team section', () => {
     ).toBeInTheDocument()
   })
 })
+
+describe('Home stats and founder quote', () => {
+  it('renders three stat counters and since line in Russian', async () => {
+    await renderHome('/ru')
+    const region = screen.getByTestId('home-stats')
+    expect(region).toBeInTheDocument()
+    expect(within(region).getByText('48')).toBeInTheDocument()
+    expect(within(region).getByText('12')).toBeInTheDocument()
+    expect(within(region).getByText('30+')).toBeInTheDocument()
+    expect(
+      within(region).getByText(/кейсов сопровождено/i),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByText(/С 2024 г\. · Совмещённый опыт команды: 15\+ лет/),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByText(
+        /Когда доступ к терапии превращается в лабиринт/i,
+      ),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByText(/Александра Киреева, основатель Aurora Med/),
+    ).toBeInTheDocument()
+  })
+
+  it('renders stats and founder quote in English', async () => {
+    await renderHome('/en')
+    const region = screen.getByTestId('home-stats')
+    expect(
+      within(region).getByText(/cases coordinated/i),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByText(/Since 2024 · Combined experience: 15\+ years/),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByText(
+        /When access to therapy turns into a maze/i,
+      ),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByText(/Alexandra Kireeva, founder of Aurora Med/),
+    ).toBeInTheDocument()
+  })
+})
