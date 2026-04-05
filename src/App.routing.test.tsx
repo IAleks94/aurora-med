@@ -33,6 +33,10 @@ describe('App routing', () => {
   it('redirects unsupported language segment to /ru', async () => {
     const { findByRole } = renderApp('/xx')
     const main = await findByRole('main')
-    expect(within(main).getByText('Home')).toBeInTheDocument()
+    expect(
+      within(main).getByRole('region', {
+        name: /Помогаем получить доступ к терапии при орфанных заболеваниях/i,
+      }),
+    ).toBeInTheDocument()
   })
 })

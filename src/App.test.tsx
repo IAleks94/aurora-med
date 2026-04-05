@@ -17,7 +17,11 @@ function renderApp(initialPath: string) {
 describe('App', () => {
   it('renders Home at /ru', () => {
     renderApp('/ru')
-    expect(screen.getByText('Home')).toBeInTheDocument()
+    expect(
+      screen.getByRole('region', {
+        name: /Помогаем получить доступ к терапии при орфанных заболеваниях/i,
+      }),
+    ).toBeInTheDocument()
   })
 
   it('renders About at /en/about', () => {

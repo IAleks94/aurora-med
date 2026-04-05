@@ -96,12 +96,12 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 8: Build Home page — Hero section with starry background
-- [ ] Create `src/pages/Home/Home.tsx` and `src/pages/Home/Home.styled.ts`
-- [ ] **Hero section**: Full viewport height section. Background: deep dark navy (#0B1026) with a subtle starry pattern — use CSS radial gradients for scattered dots (stars) and thin SVG lines representing constellations. Reference: see `src/assets/images/references/mockup-light-dark-v1.png` for the exact look. In LIGHT theme: use a lighter warm beige (#F5F0E8) background instead of the starry sky, but keep subtle decorative elements.
-- [ ] Hero content: centered text. Title: large `Urbanist Bold` (48-56px desktop, 32-40px mobile). Subtitle below in lighter weight (18-20px). Two CTA buttons side by side: "Оставить запрос" (primary, filled) and "Как это работает" (secondary, outline). All text from i18n translations.
-- [ ] "Оставить запрос" button links to `/[lang]/order`. "Как это работает" scrolls to the process section.
-- [ ] Verify section renders correctly in both themes
-- [ ] Mark completed
+- [x] Create `src/pages/Home/Home.tsx` and `src/pages/Home/Home.styled.ts`
+- [x] **Hero section**: Full viewport height section. Background: deep dark navy (#0B1026) with a subtle starry pattern — use CSS radial gradients for scattered dots (stars) and thin SVG lines representing constellations. Reference: see `src/assets/images/references/mockup-light-dark-v1.png` for the exact look. In LIGHT theme: use a lighter warm beige (#F5F0E8) background instead of the starry sky, but keep subtle decorative elements.
+- [x] Hero content: centered text. Title: large `Urbanist Bold` (48-56px desktop, 32-40px mobile). Subtitle below in lighter weight (18-20px). Two CTA buttons side by side: "Оставить запрос" (primary, filled) and "Как это работает" (secondary, outline). All text from i18n translations.
+- [x] "Оставить запрос" button links to `/[lang]/order`. "Как это работает" scrolls to the process section.
+- [x] Verify section renders correctly in both themes
+- [x] Mark completed
 
 ### Task 9: Build Home page — "How it works" process section with illustrations
 - [ ] Add process section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
