@@ -134,7 +134,7 @@ export const HeroConstellation = styled.svg`
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: ${({ theme }) => (isDark(theme) ? 0.4 : 0.14)};
+  opacity: ${({ theme }) => (isDark(theme) ? 0.4 : 0.32)};
   stroke: ${({ theme }) => theme.colors.decorative};
   fill: none;
   stroke-width: 1;
