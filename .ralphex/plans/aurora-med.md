@@ -22,15 +22,15 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 2: Set up theme system (light + dark), global styles, and font
-- [ ] Create `src/styles/theme.ts` with two theme objects: `lightTheme` and `darkTheme`. Light theme colors: background `#F5F0E8` to `#FAF7F2`, text `#0B1026`, card white with soft shadow. Dark theme colors: background `#0B1026` to `#0F1A3E`, text `#FFFFFF` / muted `#B8C4D8`, accent `#FFFFFF` (white for buttons/borders), decorative lines/constellations `rgba(255,255,255,0.3)`. Both themes share: font family `'Urbanist', sans-serif`, breakpoints (mobile 480px, tablet 768px, desktop 1024px, wide 1280px), spacing scale, border-radius values. Export TypeScript type `Theme` for styled-components.
-- [ ] Create `src/styles/styled.d.ts` — extend `DefaultTheme` from styled-components with the `Theme` type
-- [ ] Create `src/styles/GlobalStyles.ts` using `createGlobalStyle` from styled-components. Import Urbanist font from Google Fonts via `@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap')`. Set `*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }`. Body: `font-family: 'Urbanist', sans-serif; background: ${({ theme }) => theme.colors.background}; color: ${({ theme }) => theme.colors.text}; transition: background 0.3s, color 0.3s;`
-- [ ] Create `src/context/ThemeContext.tsx` — React context providing `themeMode` (light/dark), `toggleTheme`, and `setThemeMode`. Store user preference in localStorage key `aurora-theme`. Default: light for RU language, dark for EN language. If user manually toggled — persist that choice.
-- [ ] Create `src/context/index.ts` barrel export
-- [ ] Create `src/styles/index.ts` barrel export
-- [ ] Update `src/main.tsx` to wrap app with `ThemeProvider` from styled-components, using theme from `ThemeContext`. Include `GlobalStyles`.
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create `src/styles/theme.ts` with two theme objects: `lightTheme` and `darkTheme`. Light theme colors: background `#F5F0E8` to `#FAF7F2`, text `#0B1026`, card white with soft shadow. Dark theme colors: background `#0B1026` to `#0F1A3E`, text `#FFFFFF` / muted `#B8C4D8`, accent `#FFFFFF` (white for buttons/borders), decorative lines/constellations `rgba(255,255,255,0.3)`. Both themes share: font family `'Urbanist', sans-serif`, breakpoints (mobile 480px, tablet 768px, desktop 1024px, wide 1280px), spacing scale, border-radius values. Export TypeScript type `Theme` for styled-components.
+- [x] Create `src/styles/styled.d.ts` — extend `DefaultTheme` from styled-components with the `Theme` type
+- [x] Create `src/styles/GlobalStyles.ts` using `createGlobalStyle` from styled-components. Import Urbanist font from Google Fonts via `@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap')`. Set `*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }`. Body: `font-family: 'Urbanist', sans-serif; background: ${({ theme }) => theme.colors.background}; color: ${({ theme }) => theme.colors.text}; transition: background 0.3s, color 0.3s;`
+- [x] Create `src/context/ThemeContext.tsx` — React context providing `themeMode` (light/dark), `toggleTheme`, and `setThemeMode`. Store user preference in localStorage key `aurora-theme`. Default: light for RU language, dark for EN language. If user manually toggled — persist that choice.
+- [x] Create `src/context/index.ts` barrel export
+- [x] Create `src/styles/index.ts` barrel export
+- [x] Update `src/main.tsx` to wrap app with `ThemeProvider` from styled-components, using theme from `ThemeContext`. Include `GlobalStyles`.
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 3: Set up i18n (Russian + English) with all website texts
 - [ ] Create `src/i18n/index.ts` — configure i18next with react-i18next. Default language: `ru`. Detection: from URL path prefix (`/en/...` or `/ru/...`). Fallback: `ru`.
