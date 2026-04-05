@@ -252,3 +252,89 @@ export const HeroPrimaryLink = styled(Link)`
 export const HeroSecondaryButton = styled.button`
   ${outlineButtonCss}
 `
+
+export const ProcessSection = styled.section`
+  position: relative;
+  padding: ${({ theme }) => `${theme.spacing.xxl} ${theme.spacing.lg}`};
+  background: ${({ theme }) => theme.colors.card};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+`
+
+export const ProcessInner = styled.div`
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.xl};
+`
+
+export const ProcessSteps = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: ${({ theme }) => theme.spacing.xl};
+  width: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+  }
+`
+
+export const ProcessStep = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: ${({ theme }) => theme.spacing.md};
+  flex: 1 1 0;
+  min-width: 0;
+`
+
+export const ProcessConnector = styled.div`
+  display: none;
+  flex: 0 0 2rem;
+  height: 2px;
+  flex-shrink: 0;
+  margin-top: 3.75rem;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.decorative},
+    ${({ theme }) => theme.colors.border}
+  );
+  opacity: 0.85;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: block;
+  }
+`
+
+export const ProcessIllustration = styled.div`
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: 600;
+  font-size: 1.75rem;
+  letter-spacing: 0.04em;
+  color: ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.colors.background};
+  border: 2px dashed ${({ theme }) => theme.colors.decorative};
+  box-shadow: ${({ theme }) => theme.colors.cardShadow};
+`
+
+export const ProcessStepLabel = styled.p`
+  font-family: ${({ theme }) => theme.fontFamily};
+  font-weight: 500;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  line-height: 1.45;
+  color: ${({ theme }) => theme.colors.text};
+  max-width: 14rem;
+`

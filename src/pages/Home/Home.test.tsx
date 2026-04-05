@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from '@/context'
 import i18n from '@/i18n'
@@ -63,5 +63,34 @@ describe('Home hero', () => {
   it('exposes process anchor for next section', async () => {
     const { container } = await renderHome('/ru')
     expect(container.querySelector('#process')).toBeTruthy()
+  })
+})
+
+describe('Home process section', () => {
+  it('renders process title and four steps in Russian', async () => {
+    await renderHome('/ru')
+    const region = screen.getByTestId('home-process')
+    expect(region).toBeInTheDocument()
+    expect(
+      within(region).getByRole('heading', { name: /как это работает/i }),
+    ).toBeInTheDocument()
+    expect(
+      within(region).getByText('Вы отправляете запрос'),
+    ).toBeInTheDocument()
+    expect(within(region).getByText('Мы уточняем детали')).toBeInTheDocument()
+    expect(within(region).getByText('Мы координируем процесс')).toBeInTheDocument()
+    expect(within(region).getByText('Организуем поставку')).toBeInTheDocument()
+  })
+
+  it('renders process title and four steps in English', async () => {
+    await renderHome('/en')
+    const region = screen.getByTestId('home-process')
+    expect(
+      within(region).getByRole('heading', { name: /how it works/i }),
+    ).toBeInTheDocument()
+    expect(within(region).getByText('Submit a request')).toBeInTheDocument()
+    expect(within(region).getByText('Clarify the details')).toBeInTheDocument()
+    expect(within(region).getByText('Coordinate the process')).toBeInTheDocument()
+    expect(within(region).getByText('Organize delivery')).toBeInTheDocument()
   })
 })

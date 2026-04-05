@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { SectionTitle } from '@/components/SectionTitle'
 import {
   Hero,
   HeroBackdrop,
@@ -11,6 +12,13 @@ import {
   HeroSecondaryButton,
   HeroSubtitle,
   HeroTitle,
+  ProcessConnector,
+  ProcessIllustration,
+  ProcessInner,
+  ProcessSection,
+  ProcessStep,
+  ProcessStepLabel,
+  ProcessSteps,
 } from './Home.styled'
 
 function ConstellationLines() {
@@ -34,6 +42,13 @@ export function Home() {
   const scrollToProcess = useCallback(() => {
     document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' })
   }, [])
+
+  const processSteps = [
+    t('process.step1'),
+    t('process.step2'),
+    t('process.step3'),
+    t('process.step4'),
+  ] as const
 
   return (
     <>
@@ -63,7 +78,33 @@ export function Home() {
           </HeroCtas>
         </HeroInner>
       </Hero>
-      <section id="process" tabIndex={-1} />
+      <ProcessSection
+        id="process"
+        tabIndex={-1}
+        role="region"
+        aria-labelledby="process-heading"
+        data-testid="home-process"
+      >
+        <ProcessInner>
+          <SectionTitle>
+            <span id="process-heading">{t('process.title')}</span>
+          </SectionTitle>
+          <ProcessSteps>
+            {processSteps.flatMap((label, index) => {
+              const nodes = [
+                <ProcessStep key={`step-${index}`}>
+                  <ProcessIllustration aria-hidden>{index + 1}</ProcessIllustration>
+                  <ProcessStepLabel>{label}</ProcessStepLabel>
+                </ProcessStep>,
+              ]
+              if (index < processSteps.length - 1) {
+                nodes.push(<ProcessConnector key={`conn-${index}`} aria-hidden />)
+              }
+              return nodes
+            })}
+          </ProcessSteps>
+        </ProcessInner>
+      </ProcessSection>
     </>
   )
 }

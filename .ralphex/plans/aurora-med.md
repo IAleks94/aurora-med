@@ -104,14 +104,14 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 9: Build Home page — "How it works" process section with illustrations
-- [ ] Add process section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
-- [ ] Section title using `SectionTitle` component: "Как это работает" / "How it works" with decorative "+" on sides
-- [ ] 4 steps in a horizontal row (desktop) or vertical stack (mobile). Each step: illustration image on top, label text below.
-- [ ] The process illustration image is at `src/assets/images/process/steps-all.png` — this is a single image with all 4 steps. Either use this full image OR create 4 separate styled step components with placeholder illustrations and labels from i18n: step1 "Вы отправляете запрос", step2 "Мы уточняем детали", step3 "Мы координируем процесс", step4 "Организуем поставку". Prefer individual step components for flexibility.
-- [ ] Step illustrations: use circular or rounded containers, monochrome illustrations in New Yorker ink-drawing style. Since individual step images aren't available, create styled placeholder containers with step numbers (1-4) that can later be replaced with actual illustrations.
-- [ ] Arrow or line connectors between steps on desktop
-- [ ] Verify renders correctly
-- [ ] Mark completed
+- [x] Add process section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
+- [x] Section title using `SectionTitle` component: "Как это работает" / "How it works" with decorative "+" on sides
+- [x] 4 steps in a horizontal row (desktop) or vertical stack (mobile). Each step: illustration image on top, label text below.
+- [x] The process illustration image is at `src/assets/images/process/steps-all.png` — this is a single image with all 4 steps. Either use this full image OR create 4 separate styled step components with placeholder illustrations and labels from i18n: step1 "Вы отправляете запрос", step2 "Мы уточняем детали", step3 "Мы координируем процесс", step4 "Организуем поставку". Prefer individual step components for flexibility.
+- [x] Step illustrations: use circular or rounded containers, monochrome illustrations in New Yorker ink-drawing style. Since individual step images aren't available, create styled placeholder containers with step numbers (1-4) that can later be replaced with actual illustrations.
+- [x] Arrow or line connectors between steps on desktop
+- [x] Verify renders correctly
+- [x] Mark completed
 
 ### Task 10: Build Home page — Team section with portraits
 - [ ] Add team section to `src/pages/Home/Home.tsx` and `Home.styled.ts`
