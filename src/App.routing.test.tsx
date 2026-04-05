@@ -37,6 +37,15 @@ describe('App routing', () => {
     ).toBeInTheDocument()
   })
 
+  it('redirects bare page slug without locale to /ru/<slug>', async () => {
+    renderApp('/about')
+    await waitFor(() => {
+      expect(
+        within(screen.getByRole('main')).getByRole('heading', { name: /о компании/i }),
+      ).toBeInTheDocument()
+    })
+  })
+
   it('redirects unsupported language segment to /ru', async () => {
     const { findByRole } = renderApp('/xx')
     const main = await findByRole('main')

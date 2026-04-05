@@ -30,6 +30,7 @@ const SUPPORTED = new Set(['ru', 'en'])
 const NAV_KEYS = [
   { key: 'home' as const, path: '' },
   { key: 'about' as const, path: '/about' },
+  { key: 'order' as const, path: '/order' },
   { key: 'suppliers' as const, path: '/suppliers' },
   { key: 'contacts' as const, path: '/contacts' },
   { key: 'faq' as const, path: '/faq' },
