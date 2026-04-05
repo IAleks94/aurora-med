@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# Aurora Med
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+B2B marketing site for Aurora Med: bilingual (Russian / English) information and request flows for rare-disease therapy coordination, built with Vite, React, TypeScript, styled-components, react-i18next, and EmailJS for contact forms.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js compatible with the Vite 8 toolchain (see `package.json`).
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Copy `.env.example` to `.env` and set:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `VITE_EMAILJS_SERVICE_ID`
+- `VITE_EMAILJS_TEMPLATE_ID`
+- `VITE_EMAILJS_PUBLIC_KEY`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Forms call EmailJS at runtime; without these variables, `sendEmail` throws a configuration error and `initEmailJS` skips initialization when the public key is missing.
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Dev server with HMR |
+| `npm run build` | Typecheck and production build |
+| `npm run preview` | Preview production build |
+| `npm run lint` | ESLint (`src`, `.eslintrc.cjs`) |
+| `npm run test` | Vitest (run once) |
+
+Additional checks used in CI-style validation: `npx tsc --noEmit`.
+
+## Routing and languages
+
+- `/` redirects to `/ru` (default locale).
+- Supported path prefix: `/:lang` where `lang` is `ru` or `en`.
+- Pages: home (`/:lang`), `about`, `order`, `suppliers`, `contacts`, `faq`.
+- Unknown paths under a valid language redirect to that language’s home; unknown top-level paths redirect to `/ru`.
+
+## Tech stack
+
+React, React Router, styled-components, i18next / react-i18next, react-hook-form, `@emailjs/browser`, Vitest with Testing Library and jsdom.
+
+## ESLint
+
+Linting is configured in `.eslintrc.cjs` with `npm run lint` targeting `src` TypeScript and TSX files. For stricter type-aware rules or flat config, refer to the [TypeScript ESLint](https://typescript-eslint.io/) and [ESLint](https://eslint.org/) docs and adapt the project’s config accordingly.

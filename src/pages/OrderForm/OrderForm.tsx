@@ -58,6 +58,7 @@ export function OrderForm() {
     setSuccess(false)
     try {
       await sendEmail({
+        form_type: 'order_request',
         organization_name: data.organization,
         contact_name: data.contactName,
         email: data.email,
@@ -111,6 +112,7 @@ export function OrderForm() {
                 error={errors.organization?.message}
                 register={register('organization', {
                   required: t('order.validationRequired'),
+                  maxLength: 200,
                 })}
               />
               <Input
@@ -118,6 +120,7 @@ export function OrderForm() {
                 error={errors.contactName?.message}
                 register={register('contactName', {
                   required: t('order.validationRequired'),
+                  maxLength: 120,
                 })}
               />
               <Input
@@ -127,6 +130,7 @@ export function OrderForm() {
                 error={errors.email?.message}
                 register={register('email', {
                   required: t('order.validationRequired'),
+                  maxLength: 254,
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: t('order.validationEmail'),
@@ -140,6 +144,7 @@ export function OrderForm() {
                 error={errors.phone?.message}
                 register={register('phone', {
                   required: t('order.validationRequired'),
+                  maxLength: 40,
                 })}
               />
               <Input
@@ -149,6 +154,7 @@ export function OrderForm() {
                 error={errors.description?.message}
                 register={register('description', {
                   required: t('order.validationRequired'),
+                  maxLength: 5000,
                 })}
               />
               <Input
@@ -156,7 +162,7 @@ export function OrderForm() {
                 multiline
                 rows={4}
                 error={errors.medications?.message}
-                register={register('medications')}
+                register={register('medications', { maxLength: 5000 })}
               />
             </FormFields>
 

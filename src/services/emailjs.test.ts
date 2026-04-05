@@ -43,10 +43,17 @@ describe('emailjs service', () => {
     )
   })
 
-  it('sendEmail throws when EmailJS returns non-200 status', async () => {
+  it('sendEmail throws when EmailJS returns non-2xx status', async () => {
     mocked.send.mockResolvedValueOnce({ status: 500, text: 'err' })
     await expect(
       sendEmail({ organization_name: 'X', contact_name: 'Y', email: 'z@z.com' }),
     ).rejects.toThrow(/failed with status 500/)
+  })
+
+  it('sendEmail succeeds on 201 Created', async () => {
+    mocked.send.mockResolvedValueOnce({ status: 201, text: 'Created' })
+    await expect(
+      sendEmail({ organization_name: 'X', contact_name: 'Y', email: 'z@z.com' }),
+    ).resolves.toBeUndefined()
   })
 })

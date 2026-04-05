@@ -168,7 +168,9 @@ export function Header() {
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen((o) => !o)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={
+                menuOpen ? t('nav.closeMenu') : t('nav.openMenu')
+              }
             >
               {menuOpen ? <CloseIcon /> : <HamburgerIcon />}
             </MenuToggle>

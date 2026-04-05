@@ -122,6 +122,7 @@ export function Suppliers() {
                 error={errors.company?.message}
                 register={register('company', {
                   required: t('order.validationRequired'),
+                  maxLength: 200,
                 })}
               />
               <Input
@@ -129,6 +130,7 @@ export function Suppliers() {
                 error={errors.country?.message}
                 register={register('country', {
                   required: t('order.validationRequired'),
+                  maxLength: 100,
                 })}
               />
               <Input
@@ -136,6 +138,7 @@ export function Suppliers() {
                 error={errors.contactPerson?.message}
                 register={register('contactPerson', {
                   required: t('order.validationRequired'),
+                  maxLength: 120,
                 })}
               />
               <Input
@@ -145,6 +148,7 @@ export function Suppliers() {
                 error={errors.email?.message}
                 register={register('email', {
                   required: t('order.validationRequired'),
+                  maxLength: 254,
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: t('order.validationEmail'),
@@ -158,6 +162,7 @@ export function Suppliers() {
                 error={errors.message?.message}
                 register={register('message', {
                   required: t('order.validationRequired'),
+                  maxLength: 5000,
                 })}
               />
             </FormFields>

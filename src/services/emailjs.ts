@@ -29,7 +29,7 @@ export async function sendEmail(
     templateParams,
     { publicKey: PUBLIC_KEY },
   )
-  if (result.status !== 200) {
+  if (result.status < 200 || result.status >= 300) {
     throw new Error(`EmailJS send failed with status ${result.status}`)
   }
 }

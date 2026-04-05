@@ -110,6 +110,7 @@ describe('OrderForm page', () => {
       expect(sendEmailMock).toHaveBeenCalledTimes(1)
     })
     expect(sendEmailMock).toHaveBeenCalledWith({
+      form_type: 'order_request',
       organization_name: 'Fund A',
       contact_name: 'Jane Doe',
       email: 'jane@example.com',

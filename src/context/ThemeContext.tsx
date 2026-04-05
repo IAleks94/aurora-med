@@ -56,8 +56,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const styledTheme = themeMode === 'light' ? lightTheme : darkTheme
 
   const persistUserMode = useCallback((mode: ThemeMode) => {
-    window.localStorage.setItem(STORAGE_OVERRIDE, 'true')
-    window.localStorage.setItem(STORAGE_THEME, mode)
+    try {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(STORAGE_OVERRIDE, 'true')
+        window.localStorage.setItem(STORAGE_THEME, mode)
+      }
+    } catch {
+      // Quota, private mode, or disabled storage — still update UI
+    }
     setUserHasOverriddenTheme(true)
     setThemeModeState(mode)
   }, [])
@@ -78,7 +84,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (typeof window === 'undefined') return
     if (window.localStorage.getItem(STORAGE_OVERRIDE) === 'true') return
     const mode = getDefaultThemeModeForLanguage(lang)
-    window.localStorage.setItem(STORAGE_THEME, mode)
+    try {
+      window.localStorage.setItem(STORAGE_THEME, mode)
+    } catch {
+      // ignore storage failures
+    }
     setThemeModeState(mode)
   }, [])
 

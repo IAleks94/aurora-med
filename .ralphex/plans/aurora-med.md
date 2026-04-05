@@ -1,11 +1,12 @@
 # Plan: Aurora Med Website
 
 ## Overview
-Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering rare disease therapies from Europe. The site connects funds/organizations with European pharmaceutical suppliers. Built with Vite + React 18 + TypeScript + styled-components. Features dual theme (light for RU default, dark for EN default), EmailJS form submission, and i18n. Design follows provided reference mockups with a New Yorker illustration style.
+Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering rare disease therapies from Europe. The site connects funds/organizations with European pharmaceutical suppliers. Built with Vite + React 19 + TypeScript + styled-components. Features dual theme (light for RU default, dark for EN default), EmailJS form submission, and i18n. Design follows provided reference mockups with a New Yorker illustration style.
 
 ## Validation Commands
 - `npm run build`
 - `npm run lint`
+- `npm run test`
 - `npx tsc --noEmit`
 
 ### Task 1: Initialize project with Vite, install dependencies, configure tooling

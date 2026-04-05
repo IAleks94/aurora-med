@@ -7,7 +7,9 @@
     "contacts": "Contacts",
     "faq": "FAQ",
     "submitRequest": "Submit request",
-    "partnerWithUs": "Partner with us"
+    "partnerWithUs": "Partner with us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "title": "Access to rare disease therapies when local availability is limited",

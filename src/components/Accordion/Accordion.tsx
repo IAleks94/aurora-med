@@ -64,7 +64,7 @@ function AccordionRow({
           <Chevron open={open} />
         </IconWrap>
       </HeaderButton>
-      <PanelOuter $open={open}>
+      <PanelOuter $open={open} aria-hidden={!open}>
         <PanelInner>
           <Answer id={panelId} role="region" aria-labelledby={buttonId}>
             {item.answer}
