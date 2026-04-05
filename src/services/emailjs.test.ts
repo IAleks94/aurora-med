@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import emailjs from '@emailjs/browser'
-import { initEmailJS, sendEmail } from './emailjs'
+import { initEmailJS, resolveTemplateId, sendEmail } from './emailjs'
 
 vi.mock('@emailjs/browser', () => ({
   default: {
@@ -41,6 +41,33 @@ describe('emailjs service', () => {
       },
       { publicKey: 'test_public_key' },
     )
+  })
+
+  it('resolveTemplateId throws when per-form templates are partially configured', () => {
+    expect(() =>
+      resolveTemplateId(
+        { form_type: 'order_request', email: 'z@z.com' },
+        {
+          defaultTemplateId: 'main',
+          byFormType: {
+            order_request: undefined,
+            contact_feedback: 'contact_tpl',
+          },
+        },
+      ),
+    ).toThrow(/VITE_EMAILJS_TEMPLATE_ID_ORDER/)
+  })
+
+  it('resolveTemplateId uses default template when no per-form ids are set', () => {
+    expect(
+      resolveTemplateId(
+        { form_type: 'order_request', email: 'z@z.com' },
+        {
+          defaultTemplateId: 'only_template',
+          byFormType: {},
+        },
+      ),
+    ).toBe('only_template')
   })
 
   it('uses per-form template id when form_type is set', async () => {

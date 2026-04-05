@@ -50,7 +50,7 @@ export function RevealOnScroll({
   }, [rootMargin, threshold])
 
   return (
-    <Wrapper ref={ref} $visible={visible} className={className} inert={!visible}>
+    <Wrapper ref={ref} $visible={visible} className={className}>
       {children}
     </Wrapper>
   )
