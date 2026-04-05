@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useThemeContext } from '@/context'
+import { breakpoints } from '@/styles/theme'
 import {
   Controls,
   DesktopNav,
@@ -99,6 +100,16 @@ export function Header() {
   }, [location.pathname])
 
   useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoints.tablet})`)
+    const closeIfDesktop = () => {
+      if (!mq.matches) setMenuOpen(false)
+    }
+    closeIfDesktop()
+    mq.addEventListener('change', closeIfDesktop)
+    return () => mq.removeEventListener('change', closeIfDesktop)
+  }, [])
+
+  useEffect(() => {
     const main = document.getElementById('site-main')
     const footer = document.getElementById('site-footer')
     if (!main || !footer) return
@@ -145,7 +156,7 @@ export function Header() {
       !pathWithoutLang || pathWithoutLang === '/'
         ? `/${target}`
         : `/${target}${pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`}`
-    navigate(next)
+    navigate({ pathname: next, search: location.search, hash: location.hash })
   }
 
   return (

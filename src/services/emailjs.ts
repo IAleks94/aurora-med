@@ -1,5 +1,36 @@
 import emailjs from '@emailjs/browser'
 
+/** Thrown when client-side cooldown blocks another send (forms should show a friendly message). */
+export const EMAILJS_RATE_LIMIT_ERROR = 'AURORA_EMAIL_RATE_LIMIT'
+
+const SESSION_LAST_SEND_KEY = 'aurora-email-last-send'
+/** Minimum time between successful sends per tab (mitigates rapid scripted abuse; not a substitute for EmailJS dashboard limits or a server relay). */
+const MIN_SEND_INTERVAL_MS = 45_000
+
+function enforceClientSendCooldown(): void {
+  if (typeof window === 'undefined') return
+  try {
+    const now = Date.now()
+    const raw = sessionStorage.getItem(SESSION_LAST_SEND_KEY)
+    const last = raw ? Number(raw) : 0
+    if (Number.isFinite(last) && now - last < MIN_SEND_INTERVAL_MS) {
+      throw new Error(EMAILJS_RATE_LIMIT_ERROR)
+    }
+  } catch (e) {
+    if (e instanceof Error && e.message === EMAILJS_RATE_LIMIT_ERROR) throw e
+    // Storage unavailable — do not block submission; rely on EmailJS account settings.
+  }
+}
+
+function recordSuccessfulSend(): void {
+  if (typeof window === 'undefined') return
+  try {
+    sessionStorage.setItem(SESSION_LAST_SEND_KEY, String(Date.now()))
+  } catch {
+    // ignore
+  }
+}
+
 /**
  * Sends fields to EmailJS; dashboard templates must use matching variable names.
  *
@@ -75,6 +106,9 @@ export function resolveTemplateId(
 
 let initialized = false
 
+/** Serializes sends so cooldown cannot be bypassed by parallel submissions in one tab. */
+let sendQueueTail: Promise<void> = Promise.resolve()
+
 export function initEmailJS(): void {
   if (initialized) return
   if (!PUBLIC_KEY) {
@@ -87,20 +121,32 @@ export function initEmailJS(): void {
 export async function sendEmail(
   templateParams: Record<string, string>,
 ): Promise<void> {
-  const templateId = resolveTemplateId(templateParams)
-  if (!SERVICE_ID || !templateId || !PUBLIC_KEY) {
-    throw new Error(
-      'EmailJS is not configured: set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID (or per-form template vars), and VITE_EMAILJS_PUBLIC_KEY',
+  const previous = sendQueueTail
+  let releaseNext!: () => void
+  sendQueueTail = new Promise<void>((resolve) => {
+    releaseNext = resolve
+  })
+  await previous
+  try {
+    enforceClientSendCooldown()
+    const templateId = resolveTemplateId(templateParams)
+    if (!SERVICE_ID || !templateId || !PUBLIC_KEY) {
+      throw new Error(
+        'EmailJS is not configured: set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID (or per-form template vars), and VITE_EMAILJS_PUBLIC_KEY',
+      )
+    }
+    const result = await emailjs.send(
+      SERVICE_ID,
+      templateId,
+      templateParams,
+      { publicKey: PUBLIC_KEY },
     )
-  }
-  const result = await emailjs.send(
-    SERVICE_ID,
-    templateId,
-    templateParams,
-    { publicKey: PUBLIC_KEY },
-  )
-  const status = result.status
-  if (!Number.isFinite(status) || status < 200 || status >= 300) {
-    throw new Error(`EmailJS send failed with status ${String(status)}`)
+    const status = result.status
+    if (!Number.isFinite(status) || status < 200 || status >= 300) {
+      throw new Error(`EmailJS send failed with status ${String(status)}`)
+    }
+    recordSuccessfulSend()
+  } finally {
+    releaseNext()
   }
 }

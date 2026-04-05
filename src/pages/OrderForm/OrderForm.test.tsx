@@ -9,10 +9,13 @@ const { sendEmailMock } = vi.hoisted(() => ({
   sendEmailMock: vi.fn(() => Promise.resolve()),
 }))
 
-vi.mock('@/services', () => ({
-  initEmailJS: vi.fn(),
-  sendEmail: sendEmailMock,
-}))
+vi.mock('@/services', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/services')>()
+  return {
+    ...actual,
+    sendEmail: sendEmailMock,
+  }
+})
 
 async function renderOrderForm(initialPath: string) {
   const lang = initialPath.startsWith('/en') ? 'en' : 'ru'
@@ -51,6 +54,28 @@ describe('OrderForm page', () => {
     expect(
       within(hero).getByRole('heading', { name: /submit a request/i }),
     ).toBeInTheDocument()
+  })
+
+  it('rejects whitespace-only required values', async () => {
+    await renderOrderForm('/en/order')
+    fireEvent.change(screen.getByLabelText(/organization name/i), {
+      target: { value: '   ' },
+    })
+    fireEvent.change(screen.getByLabelText(/^contact person$/i), {
+      target: { value: 'Jane' },
+    })
+    fireEvent.change(screen.getByLabelText(/^email$/i), {
+      target: { value: 'jane@example.com' },
+    })
+    fireEvent.change(screen.getByLabelText(/^phone$/i), {
+      target: { value: '+1' },
+    })
+    fireEvent.change(screen.getByLabelText(/request details/i), {
+      target: { value: 'Details' },
+    })
+    fireEvent.submit(screen.getByTestId('order-form'))
+    expect(await screen.findByText(/this field is required/i)).toBeInTheDocument()
+    expect(sendEmailMock).not.toHaveBeenCalled()
   })
 
   it('shows validation errors when submitting an empty form', async () => {

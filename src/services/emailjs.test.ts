@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import emailjs from '@emailjs/browser'
-import { initEmailJS, resolveTemplateId, sendEmail } from './emailjs'
+import {
+  EMAILJS_RATE_LIMIT_ERROR,
+  initEmailJS,
+  resolveTemplateId,
+  sendEmail,
+} from './emailjs'
 
 vi.mock('@emailjs/browser', () => ({
   default: {
@@ -97,6 +102,35 @@ describe('emailjs service', () => {
       expect.objectContaining({ form_type: 'order_request' }),
       { publicKey: 'test_public_key' },
     )
+  })
+
+  it('sendEmail blocks a second send within the client cooldown window', async () => {
+    await sendEmail({
+      organization_name: 'Org',
+      contact_name: 'Jane',
+      email: 'j@example.com',
+    })
+    await expect(
+      sendEmail({
+        organization_name: 'Org',
+        contact_name: 'Jane',
+        email: 'j@example.com',
+      }),
+    ).rejects.toThrow(EMAILJS_RATE_LIMIT_ERROR)
+    expect(mocked.send).toHaveBeenCalledTimes(1)
+  })
+
+  it('sendEmail serializes concurrent calls so only one request runs per cooldown window', async () => {
+    const params = {
+      organization_name: 'Org',
+      contact_name: 'Jane',
+      email: 'j@example.com',
+    }
+    const first = sendEmail(params)
+    const second = sendEmail(params)
+    await expect(first).resolves.toBeUndefined()
+    await expect(second).rejects.toThrow(EMAILJS_RATE_LIMIT_ERROR)
+    expect(mocked.send).toHaveBeenCalledTimes(1)
   })
 
   it('sendEmail throws when EmailJS returns non-2xx status', async () => {

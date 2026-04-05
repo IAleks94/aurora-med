@@ -50,6 +50,17 @@ describe('Header', () => {
     })
   })
 
+  it('preserves query string and hash when switching language', async () => {
+    const { router } = renderHeader('/ru/about?x=1#section')
+    const enBtn = screen.getAllByRole('button', { name: /^EN$/i })[0]
+    fireEvent.click(enBtn)
+    await waitFor(() => {
+      expect(router.state.location.pathname).toBe('/en/about')
+      expect(router.state.location.search).toBe('?x=1')
+      expect(router.state.location.hash).toBe('#section')
+    })
+  })
+
   it('toggles theme and persists override in localStorage', () => {
     localStorage.clear()
     renderHeader('/ru')

@@ -14,11 +14,13 @@ import {
   PageHeroTitle,
   PageRoot,
 } from '@/pages/About/About.styled'
-import { sendEmail } from '@/services'
+import { EMAILJS_RATE_LIMIT_ERROR, sendEmail } from '@/services'
+import { requiredTrimmed } from '@/utils/formValidation'
 import {
   ButtonInner,
   Form,
   FormFields,
+  HoneypotWrap,
   MessageBanner,
   Spinner,
   SubmitRow,
@@ -31,6 +33,8 @@ export type OrderFormValues = {
   phone: string
   description: string
   medications: string
+  /** Honeypot — must stay empty; obscure name avoids browser autofill on "website". */
+  hpField: string
 }
 
 export function OrderForm() {
@@ -50,26 +54,35 @@ export function OrderForm() {
       phone: '',
       description: '',
       medications: '',
+      hpField: '',
     },
   })
 
   const onSubmit = async (data: OrderFormValues) => {
     setSubmitError(null)
     setSuccess(false)
+    if (data.hpField?.trim()) {
+      setSuccess(true)
+      return
+    }
     try {
       await sendEmail({
         form_type: 'order_request',
-        organization_name: data.organization,
-        contact_name: data.contactName,
-        email: data.email,
-        phone: data.phone,
-        order_description: data.description,
+        organization_name: data.organization.trim(),
+        contact_name: data.contactName.trim(),
+        email: data.email.trim(),
+        phone: data.phone.trim(),
+        order_description: data.description.trim(),
         medications: data.medications.trim() || '—',
       })
       setSuccess(true)
       reset()
-    } catch {
-      setSubmitError(t('order.error'))
+    } catch (e) {
+      setSubmitError(
+        e instanceof Error && e.message === EMAILJS_RATE_LIMIT_ERROR
+          ? t('order.formRateLimit')
+          : t('order.error'),
+      )
     }
   }
 
@@ -106,12 +119,21 @@ export function OrderForm() {
           ) : null}
 
           <Form onSubmit={handleSubmit(onSubmit)} noValidate data-testid="order-form">
+            <HoneypotWrap>
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-label={t('order.honeypotLabel')}
+                {...register('hpField')}
+              />
+            </HoneypotWrap>
             <FormFields>
               <Input
                 label={t('order.organization')}
                 error={errors.organization?.message}
                 register={register('organization', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 200,
                     message: t('order.validationMaxLength'),
@@ -122,7 +144,7 @@ export function OrderForm() {
                 label={t('order.contactName')}
                 error={errors.contactName?.message}
                 register={register('contactName', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 120,
                     message: t('order.validationMaxLength'),
@@ -135,7 +157,7 @@ export function OrderForm() {
                 autoComplete="email"
                 error={errors.email?.message}
                 register={register('email', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 254,
                     message: t('order.validationMaxLength'),
@@ -152,7 +174,7 @@ export function OrderForm() {
                 autoComplete="tel"
                 error={errors.phone?.message}
                 register={register('phone', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 40,
                     message: t('order.validationMaxLength'),
@@ -165,7 +187,7 @@ export function OrderForm() {
                 rows={5}
                 error={errors.description?.message}
                 register={register('description', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 5000,
                     message: t('order.validationMaxLength'),

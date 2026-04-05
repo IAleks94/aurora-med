@@ -97,7 +97,9 @@
     "error": "Не удалось отправить форму. Попробуйте позже или напишите на email.",
     "validationRequired": "Это поле обязательно",
     "validationEmail": "Введите корректный email",
-    "validationMaxLength": "Слишком длинное значение"
+    "validationMaxLength": "Слишком длинное значение",
+    "honeypotLabel": "Не заполняйте это поле",
+    "formRateLimit": "Слишком частые отправки. Подождите немного и попробуйте снова."
   },
   "suppliers": {
     "pageTitle": "Поставщикам",

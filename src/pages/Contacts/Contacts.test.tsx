@@ -9,10 +9,13 @@ const { sendEmailMock } = vi.hoisted(() => ({
   sendEmailMock: vi.fn(() => Promise.resolve()),
 }))
 
-vi.mock('@/services', () => ({
-  initEmailJS: vi.fn(),
-  sendEmail: sendEmailMock,
-}))
+vi.mock('@/services', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/services')>()
+  return {
+    ...actual,
+    sendEmail: sendEmailMock,
+  }
+})
 
 async function renderContacts(initialPath: string) {
   const lang = initialPath.startsWith('/en') ? 'en' : 'ru'

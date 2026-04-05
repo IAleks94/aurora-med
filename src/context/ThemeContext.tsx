@@ -89,6 +89,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const syncThemeFromLanguage = useCallback((lang: string) => {
     if (typeof window === 'undefined') return
+    if (userHasOverriddenTheme) return
     if (window.localStorage.getItem(STORAGE_OVERRIDE) === 'true') return
     const mode = getDefaultThemeModeForLanguage(lang)
     try {
@@ -97,7 +98,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       // ignore storage failures
     }
     setThemeModeState(mode)
-  }, [])
+  }, [userHasOverriddenTheme])
 
   const value = useMemo(
     (): ThemeContextValue => ({

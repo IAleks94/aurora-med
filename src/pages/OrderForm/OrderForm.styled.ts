@@ -7,6 +7,7 @@ const spin = keyframes`
 `
 
 export const Form = styled.form`
+  position: relative;
   width: 100%;
   min-width: 0;
   max-width: 36rem;
@@ -20,6 +21,19 @@ export const FormFields = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.md};
+`
+
+/** Off-screen honeypot wrapper; must stay out of the tab order. */
+export const HoneypotWrap = styled.div`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 `
 
 export const MessageBanner = styled.div<{ $variant: 'success' | 'error' }>`

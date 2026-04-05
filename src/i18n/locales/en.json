@@ -97,7 +97,9 @@
     "error": "Could not submit the form. Please try again later or email us.",
     "validationRequired": "This field is required",
     "validationEmail": "Enter a valid email address",
-    "validationMaxLength": "This field is too long"
+    "validationMaxLength": "This field is too long",
+    "honeypotLabel": "Leave this field blank",
+    "formRateLimit": "Too many submissions. Please wait a moment and try again."
   },
   "suppliers": {
     "pageTitle": "For suppliers",

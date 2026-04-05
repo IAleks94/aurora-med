@@ -15,11 +15,13 @@ import {
   PageRoot,
   SectionHeading,
 } from '@/pages/About/About.styled'
-import { sendEmail } from '@/services'
+import { EMAILJS_RATE_LIMIT_ERROR, sendEmail } from '@/services'
+import { requiredTrimmed } from '@/utils/formValidation'
 import {
   ButtonInner,
   Form,
   FormFields,
+  HoneypotWrap,
   MessageBanner,
   Spinner,
   SubmitRow,
@@ -37,6 +39,7 @@ export type ContactsFormValues = {
   name: string
   email: string
   message: string
+  hpField: string
 }
 
 function phoneHref(phone: string): string {
@@ -57,23 +60,32 @@ export function Contacts() {
       name: '',
       email: '',
       message: '',
+      hpField: '',
     },
   })
 
   const onSubmit = async (data: ContactsFormValues) => {
     setSubmitError(null)
     setSuccess(false)
+    if (data.hpField?.trim()) {
+      setSuccess(true)
+      return
+    }
     try {
       await sendEmail({
         form_type: 'contact_feedback',
-        contact_name: data.name,
-        email: data.email,
-        message: data.message,
+        contact_name: data.name.trim(),
+        email: data.email.trim(),
+        message: data.message.trim(),
       })
       setSuccess(true)
       reset()
-    } catch {
-      setSubmitError(t('contacts.error'))
+    } catch (e) {
+      setSubmitError(
+        e instanceof Error && e.message === EMAILJS_RATE_LIMIT_ERROR
+          ? t('order.formRateLimit')
+          : t('contacts.error'),
+      )
     }
   }
 
@@ -136,13 +148,22 @@ export function Contacts() {
           ) : null}
 
           <Form onSubmit={handleSubmit(onSubmit)} noValidate data-testid="contacts-form">
+            <HoneypotWrap>
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-label={t('order.honeypotLabel')}
+                {...register('hpField')}
+              />
+            </HoneypotWrap>
             <FormFields>
               <Input
                 label={t('contacts.name')}
                 autoComplete="name"
                 error={errors.name?.message}
                 register={register('name', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 120,
                     message: t('order.validationMaxLength'),
@@ -155,7 +176,7 @@ export function Contacts() {
                 autoComplete="email"
                 error={errors.email?.message}
                 register={register('email', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 254,
                     message: t('order.validationMaxLength'),
@@ -172,7 +193,7 @@ export function Contacts() {
                 rows={6}
                 error={errors.message?.message}
                 register={register('message', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 5000,
                     message: t('order.validationMaxLength'),

@@ -16,11 +16,13 @@ import {
   Prose,
   SectionHeading,
 } from '@/pages/About/About.styled'
-import { sendEmail } from '@/services'
+import { EMAILJS_RATE_LIMIT_ERROR, sendEmail } from '@/services'
+import { requiredTrimmed } from '@/utils/formValidation'
 import {
   ButtonInner,
   Form,
   FormFields,
+  HoneypotWrap,
   MessageBanner,
   Spinner,
   SubmitRow,
@@ -33,6 +35,7 @@ export type SuppliersFormValues = {
   contactPerson: string
   email: string
   message: string
+  hpField: string
 }
 
 export function Suppliers() {
@@ -51,25 +54,34 @@ export function Suppliers() {
       contactPerson: '',
       email: '',
       message: '',
+      hpField: '',
     },
   })
 
   const onSubmit = async (data: SuppliersFormValues) => {
     setSubmitError(null)
     setSuccess(false)
+    if (data.hpField?.trim()) {
+      setSuccess(true)
+      return
+    }
     try {
       await sendEmail({
         form_type: 'supplier_inquiry',
-        company_name: data.company,
-        country: data.country,
-        contact_person: data.contactPerson,
-        email: data.email,
-        message: data.message,
+        company_name: data.company.trim(),
+        country: data.country.trim(),
+        contact_person: data.contactPerson.trim(),
+        email: data.email.trim(),
+        message: data.message.trim(),
       })
       setSuccess(true)
       reset()
-    } catch {
-      setSubmitError(t('suppliers.error'))
+    } catch (e) {
+      setSubmitError(
+        e instanceof Error && e.message === EMAILJS_RATE_LIMIT_ERROR
+          ? t('order.formRateLimit')
+          : t('suppliers.error'),
+      )
     }
   }
 
@@ -116,12 +128,21 @@ export function Suppliers() {
           ) : null}
 
           <Form onSubmit={handleSubmit(onSubmit)} noValidate data-testid="suppliers-form">
+            <HoneypotWrap>
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-label={t('order.honeypotLabel')}
+                {...register('hpField')}
+              />
+            </HoneypotWrap>
             <FormFields>
               <Input
                 label={t('suppliers.company')}
                 error={errors.company?.message}
                 register={register('company', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 200,
                     message: t('order.validationMaxLength'),
@@ -132,7 +153,7 @@ export function Suppliers() {
                 label={t('suppliers.country')}
                 error={errors.country?.message}
                 register={register('country', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 100,
                     message: t('order.validationMaxLength'),
@@ -143,7 +164,7 @@ export function Suppliers() {
                 label={t('suppliers.contactPerson')}
                 error={errors.contactPerson?.message}
                 register={register('contactPerson', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 120,
                     message: t('order.validationMaxLength'),
@@ -156,7 +177,7 @@ export function Suppliers() {
                 autoComplete="email"
                 error={errors.email?.message}
                 register={register('email', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 254,
                     message: t('order.validationMaxLength'),
@@ -173,7 +194,7 @@ export function Suppliers() {
                 rows={6}
                 error={errors.message?.message}
                 register={register('message', {
-                  required: t('order.validationRequired'),
+                  validate: requiredTrimmed(t('order.validationRequired')),
                   maxLength: {
                     value: 5000,
                     message: t('order.validationMaxLength'),
