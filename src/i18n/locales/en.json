@@ -197,5 +197,10 @@
     "switch": "Language",
     "ru": "RU",
     "en": "EN"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page does not exist or has been moved.",
+    "backHome": "Back to home"
   }
 }

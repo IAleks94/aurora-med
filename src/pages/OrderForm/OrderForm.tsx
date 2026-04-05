@@ -62,7 +62,6 @@ export function OrderForm() {
     setSubmitError(null)
     setSuccess(false)
     if (data.hpField?.trim()) {
-      setSuccess(true)
       return
     }
     try {

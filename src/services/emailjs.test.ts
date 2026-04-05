@@ -48,8 +48,9 @@ describe('emailjs service', () => {
     )
   })
 
-  it('resolveTemplateId throws when per-form templates are partially configured', () => {
-    expect(() =>
+  it('resolveTemplateId falls back to default when per-form templates are partially configured', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    expect(
       resolveTemplateId(
         { form_type: 'order_request', email: 'z@z.com' },
         {
@@ -60,7 +61,8 @@ describe('emailjs service', () => {
           },
         },
       ),
-    ).toThrow(/VITE_EMAILJS_TEMPLATE_ID_ORDER/)
+    ).toBe('main')
+    warn.mockRestore()
   })
 
   it('resolveTemplateId uses default template when no per-form ids are set', () => {
@@ -104,14 +106,16 @@ describe('emailjs service', () => {
     )
   })
 
-  it('sendEmail blocks a second send within the client cooldown window', async () => {
+  it('sendEmail blocks a second send within the client cooldown window for the same form_type', async () => {
     await sendEmail({
+      form_type: 'order_request',
       organization_name: 'Org',
       contact_name: 'Jane',
       email: 'j@example.com',
     })
     await expect(
       sendEmail({
+        form_type: 'order_request',
         organization_name: 'Org',
         contact_name: 'Jane',
         email: 'j@example.com',
@@ -120,8 +124,25 @@ describe('emailjs service', () => {
     expect(mocked.send).toHaveBeenCalledTimes(1)
   })
 
+  it('sendEmail allows different form_types within the same cooldown window', async () => {
+    await sendEmail({
+      form_type: 'order_request',
+      organization_name: 'Org',
+      contact_name: 'Jane',
+      email: 'j@example.com',
+    })
+    await sendEmail({
+      form_type: 'contact_feedback',
+      contact_name: 'Jane',
+      email: 'j@example.com',
+      message: 'Hi',
+    })
+    expect(mocked.send).toHaveBeenCalledTimes(2)
+  })
+
   it('sendEmail serializes concurrent calls so only one request runs per cooldown window', async () => {
     const params = {
+      form_type: 'order_request' as const,
       organization_name: 'Org',
       contact_name: 'Jane',
       email: 'j@example.com',

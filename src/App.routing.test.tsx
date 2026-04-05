@@ -56,13 +56,12 @@ describe('App routing', () => {
     })
   })
 
-  it('redirects unknown path under a valid language to that language home', async () => {
+  it('renders not found for unknown path under a valid language', async () => {
     renderApp('/en/not-a-valid-route')
     await waitFor(() => {
+      expect(within(screen.getByRole('main')).getByTestId('not-found-page')).toBeInTheDocument()
       expect(
-        within(screen.getByRole('main')).getByRole('region', {
-          name: /Access to rare disease therapies when local availability is limited/i,
-        }),
+        within(screen.getByRole('main')).getByRole('heading', { name: /page not found/i }),
       ).toBeInTheDocument()
     })
   })

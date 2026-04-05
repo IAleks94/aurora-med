@@ -3,15 +3,21 @@ import emailjs from '@emailjs/browser'
 /** Thrown when client-side cooldown blocks another send (forms should show a friendly message). */
 export const EMAILJS_RATE_LIMIT_ERROR = 'AURORA_EMAIL_RATE_LIMIT'
 
-const SESSION_LAST_SEND_KEY = 'aurora-email-last-send'
-/** Minimum time between successful sends per tab (mitigates rapid scripted abuse; not a substitute for EmailJS dashboard limits or a server relay). */
+const SESSION_LAST_SEND_PREFIX = 'aurora-email-last-send:'
+/** Minimum time between successful sends per tab per logical form (mitigates rapid scripted abuse; not a substitute for EmailJS dashboard limits or a server relay). */
 const MIN_SEND_INTERVAL_MS = 45_000
 
-function enforceClientSendCooldown(): void {
+function sessionStorageKeyForSend(templateParams: Record<string, string>): string {
+  const ft = templateParams.form_type?.trim()
+  return `${SESSION_LAST_SEND_PREFIX}${ft || '_default'}`
+}
+
+function enforceClientSendCooldown(templateParams: Record<string, string>): void {
   if (typeof window === 'undefined') return
   try {
     const now = Date.now()
-    const raw = sessionStorage.getItem(SESSION_LAST_SEND_KEY)
+    const key = sessionStorageKeyForSend(templateParams)
+    const raw = sessionStorage.getItem(key)
     const last = raw ? Number(raw) : 0
     if (Number.isFinite(last) && now - last < MIN_SEND_INTERVAL_MS) {
       throw new Error(EMAILJS_RATE_LIMIT_ERROR)
@@ -22,10 +28,13 @@ function enforceClientSendCooldown(): void {
   }
 }
 
-function recordSuccessfulSend(): void {
+function recordSuccessfulSend(templateParams: Record<string, string>): void {
   if (typeof window === 'undefined') return
   try {
-    sessionStorage.setItem(SESSION_LAST_SEND_KEY, String(Date.now()))
+    sessionStorage.setItem(
+      sessionStorageKeyForSend(templateParams),
+      String(Date.now()),
+    )
   } catch {
     // ignore
   }
@@ -73,7 +82,7 @@ const defaultTemplateEnv: EmailTemplateEnv = {
 /**
  * Resolves which EmailJS template id to use. Overridable in tests via `env`.
  * If any per-form template id is set but the id for the current `form_type` is missing,
- * throws (avoids silently using the default template with the wrong field layout).
+ * falls back to `defaultTemplateId` when set (with a dev warning); otherwise throws.
  */
 export function resolveTemplateId(
   templateParams: Record<string, string>,
@@ -99,8 +108,17 @@ export function resolveTemplateId(
     return env.defaultTemplateId
   }
 
+  if (env.defaultTemplateId) {
+    if (import.meta.env.DEV) {
+      console.warn(
+        `[EmailJS] Per-form template IDs are set but not for "${formType}". Using VITE_EMAILJS_TEMPLATE_ID. Set VITE_EMAILJS_TEMPLATE_ID_${FORM_ENV_SUFFIX[key]} for a dedicated template.`,
+      )
+    }
+    return env.defaultTemplateId
+  }
+
   throw new Error(
-    `EmailJS: set VITE_EMAILJS_TEMPLATE_ID_${FORM_ENV_SUFFIX[key]} for form_type "${formType}" when other per-form template IDs are configured, or use only VITE_EMAILJS_TEMPLATE_ID without per-form variables.`,
+    `EmailJS: set VITE_EMAILJS_TEMPLATE_ID_${FORM_ENV_SUFFIX[key]} for form_type "${formType}" when other per-form template IDs are configured, or set VITE_EMAILJS_TEMPLATE_ID as fallback.`,
   )
 }
 
@@ -128,7 +146,7 @@ export async function sendEmail(
   })
   await previous
   try {
-    enforceClientSendCooldown()
+    enforceClientSendCooldown(templateParams)
     const templateId = resolveTemplateId(templateParams)
     if (!SERVICE_ID || !templateId || !PUBLIC_KEY) {
       throw new Error(
@@ -145,7 +163,7 @@ export async function sendEmail(
     if (!Number.isFinite(status) || status < 200 || status >= 300) {
       throw new Error(`EmailJS send failed with status ${String(status)}`)
     }
-    recordSuccessfulSend()
+    recordSuccessfulSend(templateParams)
   } finally {
     releaseNext()
   }
