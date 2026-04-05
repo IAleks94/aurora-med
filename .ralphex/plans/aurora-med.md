@@ -153,13 +153,13 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 14: Build Suppliers page with contact form
-- [ ] Create full `src/pages/Suppliers/Suppliers.tsx` and `Suppliers.styled.ts`
-- [ ] Info section: description of partnership conditions, how European suppliers can work with Aurora Med
-- [ ] Contact form (no registration): company name, country, contact person, email, message (textarea). All required. Submit via EmailJS.
-- [ ] Use same form styling as OrderForm page
-- [ ] All text from i18n translations
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create full `src/pages/Suppliers/Suppliers.tsx` and `Suppliers.styled.ts`
+- [x] Info section: description of partnership conditions, how European suppliers can work with Aurora Med
+- [x] Contact form (no registration): company name, country, contact person, email, message (textarea). All required. Submit via EmailJS.
+- [x] Use same form styling as OrderForm page
+- [x] All text from i18n translations
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 15: Build Contacts page
 - [ ] Create full `src/pages/Contacts/Contacts.tsx` and `Contacts.styled.ts`
