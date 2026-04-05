@@ -77,12 +77,12 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 6: Build Footer component
-- [ ] Create `src/components/Footer/Footer.tsx` and `src/components/Footer/Footer.styled.ts`
-- [ ] Footer contains: logo "AURORA+", copyright text, navigation links (same as header), contact email
-- [ ] Simple, minimal design. Dark theme: dark background with light text. Light theme: light background with dark text.
-- [ ] Create `src/components/Footer/index.ts`
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create `src/components/Footer/Footer.tsx` and `src/components/Footer/Footer.styled.ts`
+- [x] Footer contains: logo "AURORA+", copyright text, navigation links (same as header), contact email
+- [x] Simple, minimal design. Dark theme: dark background with light text. Light theme: light background with dark text.
+- [x] Create `src/components/Footer/index.ts`
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 7: Build reusable UI components (Button, Input, Card, SectionTitle, Accordion, StatCounter)
 - [ ] Create `src/components/Button/Button.tsx` + `Button.styled.ts` + `index.ts`. Props: variant ('primary' | 'secondary' | 'outline'), size ('sm' | 'md' | 'lg'), fullWidth, children, onClick, type. Primary: filled with theme accent color, border. Secondary/outline: transparent with border. Hover states with smooth transitions. Style from references: rounded corners (~8px), uppercase text, letter-spacing.
