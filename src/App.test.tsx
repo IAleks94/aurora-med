@@ -26,7 +26,9 @@ describe('App', () => {
 
   it('renders About at /en/about', () => {
     renderApp('/en/about')
-    expect(within(screen.getByRole('main')).getByText('About')).toBeInTheDocument()
+    expect(
+      within(screen.getByRole('main')).getByRole('heading', { name: /about us/i }),
+    ).toBeInTheDocument()
   })
 
   it('renders OrderForm at /ru/order', () => {

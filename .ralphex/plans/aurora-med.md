@@ -133,14 +133,14 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 12: Build About page
-- [ ] Create full content for `src/pages/About/About.tsx` and `About.styled.ts`
-- [ ] Hero section with page title "О компании" / "About us"
-- [ ] Company story section: expanded text about the company's mission — born from personal experience with rare disease, building a system where the path to treatment becomes clear and manageable
-- [ ] Team section: reuse team member data, but with more detailed descriptions
-- [ ] Values/approach section: key principles of how Aurora Med works
-- [ ] All text from i18n translations
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create full content for `src/pages/About/About.tsx` and `About.styled.ts`
+- [x] Hero section with page title "О компании" / "About us"
+- [x] Company story section: expanded text about the company's mission — born from personal experience with rare disease, building a system where the path to treatment becomes clear and manageable
+- [x] Team section: reuse team member data, but with more detailed descriptions
+- [x] Values/approach section: key principles of how Aurora Med works
+- [x] All text from i18n translations
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 13: Build Order Form page with validation and EmailJS
 - [ ] Create `src/services/emailjs.ts` — helper function `sendEmail(templateParams: Record<string, string>)` that calls `emailjs.send()` with env vars. Handle success/error. Export also an `initEmailJS()` function called once in main.tsx.

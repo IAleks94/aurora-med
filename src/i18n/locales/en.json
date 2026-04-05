@@ -65,7 +65,19 @@
     "value2Title": "Coordination",
     "value2Body": "A single point of contact for funds, clinics, and suppliers.",
     "value3Title": "Reliability",
-    "value3Body": "Vetted partners and documentation that meets regulatory expectations."
+    "value3Body": "Vetted partners and documentation that meets regulatory expectations.",
+    "teamSectionTitle": "Our team",
+    "team": {
+      "alexandra": {
+        "longDescription": "Alexandra has spent more than ten years on logistics for complex cases with unregistered supplies, building transparent processes for funds and patients. As founder of Aurora Med she sets the standards for coordination with European suppliers."
+      },
+      "irina": {
+        "longDescription": "Irina leads communication with funds and organizations—from the first request through procurement alignment and international delivery. She turns complex pathways into clear steps and timelines."
+      },
+      "sofia": {
+        "longDescription": "Sofia oversees procurement and delivery of therapies in international programs, supplier terms, and documentation quality."
+      }
+    }
   },
   "order": {
     "pageTitle": "Submit a request",
