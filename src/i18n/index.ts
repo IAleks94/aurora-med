@@ -24,7 +24,7 @@ void i18n.use(initReactI18next).init({
   lng: initialLng,
   fallbackLng: 'ru',
   supportedLngs: ['ru', 'en'],
-  interpolation: { escapeValue: false },
+  interpolation: { escapeValue: true },
   react: { useSuspense: false },
 })
 

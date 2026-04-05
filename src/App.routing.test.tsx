@@ -46,6 +46,13 @@ describe('App routing', () => {
     })
   })
 
+  it('redirects bare slug with extra segments to /ru/<slug>/... so invalid tails surface as not found', async () => {
+    renderApp('/about/extra-segment')
+    await waitFor(() => {
+      expect(within(screen.getByRole('main')).getByTestId('not-found-page')).toBeInTheDocument()
+    })
+  })
+
   it('redirects unsupported language segment to /ru', async () => {
     const { findByRole } = renderApp('/xx')
     const main = await findByRole('main')

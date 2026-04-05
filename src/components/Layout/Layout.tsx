@@ -27,10 +27,14 @@ export function Layout() {
 
   if (!lang || !SUPPORTED_LANGS.has(lang)) {
     if (lang && KNOWN_PAGE_SLUGS.has(lang)) {
+      const segments = location.pathname.split('/').filter(Boolean)
+      const tail = segments.slice(1)
+      const pathname =
+        tail.length > 0 ? `/ru/${lang}/${tail.join('/')}` : `/ru/${lang}`
       return (
         <Navigate
           to={{
-            pathname: `/ru/${lang}`,
+            pathname,
             search: location.search,
             hash: location.hash,
           }}
