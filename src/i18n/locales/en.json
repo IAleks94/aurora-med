@@ -1,0 +1,176 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "order": "Order",
+    "suppliers": "For suppliers",
+    "contacts": "Contacts",
+    "faq": "FAQ",
+    "submitRequest": "Submit request",
+    "partnerWithUs": "Partner with us"
+  },
+  "hero": {
+    "title": "Access to rare disease therapies when local availability is limited",
+    "subtitle": "We coordinate cross-border supply of treatments in complex cases.",
+    "cta": "Submit request",
+    "ctaSecondary": "How it works"
+  },
+  "process": {
+    "title": "How it works",
+    "step1": "Submit a request",
+    "step2": "Clarify the details",
+    "step3": "Coordinate the process",
+    "step4": "Organize delivery"
+  },
+  "team": {
+    "title": "Operational network",
+    "alexandra": {
+      "name": "Alexandra Kireeva",
+      "role": "Founder",
+      "description": "Over 10 years coordinating complex logistics and unregistered supplies of medicines for rare diseases."
+    },
+    "irina": {
+      "name": "Irina Korotkova",
+      "role": "Funds liaison",
+      "description": "Handles therapy requests and procurement, organizes international deliveries."
+    },
+    "sofia": {
+      "name": "Sofia Fleishman",
+      "role": "Chief Procurement Officer",
+      "description": "Coordinates procurement and supply of therapies for international cases."
+    }
+  },
+  "stats": {
+    "cases": "cases coordinated",
+    "countries": "countries supplied",
+    "partners": "partners",
+    "since": "Since 2024 · Combined experience: 15+ years"
+  },
+  "founder": {
+    "story": "The company grew out of personal experience living with a rare disease and understanding how difficult the path to therapy can be. We are building a system where that path becomes clear and manageable.",
+    "quote": "When access to therapy turns into a maze, it helps to have someone who knows the way.",
+    "attribution": "Alexandra Kireeva, founder of Aurora Med"
+  },
+  "about": {
+    "pageTitle": "About us",
+    "intro": "Aurora Med connects funds, organizations, and European suppliers so patients with rare diseases can access therapy when local availability is limited.",
+    "storyTitle": "Our story",
+    "storyBody": "We grew from personal experience and years of work with unregistered supplies and complex logistics. Our goal is to make the path to therapy transparent—from request to delivery.",
+    "missionTitle": "Mission",
+    "missionBody": "Reduce barriers between patients and lawful sources of therapy in Europe while maintaining compliance and supply-chain safety.",
+    "valuesTitle": "How we work",
+    "value1Title": "Transparency",
+    "value1Body": "Clear stages, realistic timelines, and accountability at every step.",
+    "value2Title": "Coordination",
+    "value2Body": "A single point of contact for funds, clinics, and suppliers.",
+    "value3Title": "Reliability",
+    "value3Body": "Vetted partners and documentation that meets regulatory expectations."
+  },
+  "order": {
+    "pageTitle": "Submit a request",
+    "intro": "Fill out the form—we will contact you, clarify therapy and logistics details, and outline next steps.",
+    "organization": "Organization name",
+    "contactName": "Contact person",
+    "email": "Email",
+    "phone": "Phone",
+    "description": "Request details",
+    "medications": "List of medicines (optional)",
+    "submit": "Submit request",
+    "sending": "Sending…",
+    "success": "Your request was sent. We will contact you shortly.",
+    "error": "Could not submit the form. Please try again later or email us."
+  },
+  "suppliers": {
+    "pageTitle": "For suppliers",
+    "intro": "We work with European manufacturers and distributors to support deliveries in complex, non-standard cases. Tell us about your company and how you would like to collaborate.",
+    "formTitle": "Contact us",
+    "company": "Company name",
+    "country": "Country",
+    "contactPerson": "Contact person",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send",
+    "sending": "Sending…",
+    "success": "Message sent.",
+    "error": "Send failed. Please try again later."
+  },
+  "contacts": {
+    "pageTitle": "Contacts",
+    "intro": "Reach us by email or phone—or leave a message using the form.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "addressLabel": "Address",
+    "emailValue": "info@aurora-med.example",
+    "phoneValue": "+00 000 000 0000",
+    "addressValue": "Europe (registered address on request)",
+    "formTitle": "Write to us",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send",
+    "sending": "Sending…",
+    "success": "Message sent.",
+    "error": "Send failed."
+  },
+  "faq": {
+    "pageTitle": "Frequently asked questions",
+    "categories": {
+      "funds": "For funds",
+      "suppliers": "For suppliers",
+      "general": "General"
+    },
+    "funds": {
+      "q1": {
+        "question": "Which medicines can be ordered?",
+        "answer": "We coordinate supply of EU-registered medicines for individual requests and approved pathways. The exact list depends on diagnosis, registration, and supplier availability."
+      },
+      "q2": {
+        "question": "How long does delivery take?",
+        "answer": "Timelines depend on the product, country, and paperwork. After we clarify details, we provide an indicative timeline and milestones."
+      },
+      "q3": {
+        "question": "Is a license required to order?",
+        "answer": "Requirements depend on jurisdiction and your organization’s role. We can outline which documents are typically needed at your stage."
+      }
+    },
+    "suppliers": {
+      "q1": {
+        "question": "How do we become a supplier?",
+        "answer": "Use the “For suppliers” form—we will contact you to discuss terms and compliance."
+      },
+      "q2": {
+        "question": "Which supply categories do you consider?",
+        "answer": "We focus on orphan and rare therapies, deliveries under individual requests and approved programs."
+      }
+    },
+    "general": {
+      "q1": {
+        "question": "Which languages do you support?",
+        "answer": "The site and communications are available in Russian and English; we can involve partners for other languages when needed."
+      },
+      "q2": {
+        "question": "Do you process personal data?",
+        "answer": "We process data only as needed to respond and coordinate, in line with applicable regulations."
+      },
+      "q3": {
+        "question": "Where is the company registered?",
+        "answer": "Corporate details and jurisdiction are provided in contractual documentation and on first contact."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© Aurora Med",
+    "rights": "All rights reserved.",
+    "email": "info@aurora-med.example"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light theme",
+    "dark": "Dark theme"
+  },
+  "language": {
+    "switch": "Language",
+    "ru": "RU",
+    "en": "EN"
+  }
+}

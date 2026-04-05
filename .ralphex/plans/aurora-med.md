@@ -33,8 +33,8 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 3: Set up i18n (Russian + English) with all website texts
-- [ ] Create `src/i18n/index.ts` — configure i18next with react-i18next. Default language: `ru`. Detection: from URL path prefix (`/en/...` or `/ru/...`). Fallback: `ru`.
-- [ ] Create `src/i18n/locales/ru.json` with all Russian texts organized by page:
+- [x] Create `src/i18n/index.ts` — configure i18next with react-i18next. Default language: `ru`. Detection: from URL path prefix (`/en/...` or `/ru/...`). Fallback: `ru`.
+- [x] Create `src/i18n/locales/ru.json` with all Russian texts organized by page:
   - `nav`: { home, about, order, suppliers, contacts, faq, submitRequest, partnerWithUs }
   - `hero`: { title: "Помогаем получить доступ к терапии при орфанных заболеваниях", subtitle: "Координируем сложные случаи между пациентами, фондами и международными поставщиками.", cta: "Оставить запрос", ctaSecondary: "Как это работает" }
   - `process`: { title: "Как это работает", step1: "Вы отправляете запрос", step2: "Мы уточняем детали", step3: "Мы координируем процесс", step4: "Организуем поставку" }
@@ -43,16 +43,16 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
   - `founder`: { story: "Компания возникла из личного опыта жизни с редким заболеванием и понимания того, насколько сложным может быть путь к терапии. Мы создаём систему, в которой этот путь становится понятным и управляемым.", quote: "Когда доступ к терапии превращается в лабиринт, важно, чтобы кто-то знал путь." }
   - `about`, `order`, `suppliers`, `contacts`, `faq` page texts
   - `footer`, `theme`: { toggle }, `language`: { switch }
-- [ ] Create `src/i18n/locales/en.json` with all English translations matching the same key structure:
+- [x] Create `src/i18n/locales/en.json` with all English translations matching the same key structure:
   - `hero.title`: "Access to rare disease therapies when local availability is limited"
   - `hero.subtitle`: "We coordinate cross-border supply of treatments in complex cases."
   - `hero.cta`: "Submit request", `hero.ctaSecondary`: "How it works"
   - `process`: { title: "How it works", step1: "Submit a request", step2: "Clarify the details", step3: "Coordinate the process", step4: "Organize delivery" }
   - `team.title`: "Operational network", `stats.since`: "Since 2024 · Combined experience: 15+ years"
   - All other keys translated to English
-- [ ] Import and initialize i18n in `src/main.tsx`
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Import and initialize i18n in `src/main.tsx`
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 4: Set up routing with language prefixes and create App shell
 - [ ] Create `src/App.tsx` with React Router v6. Routes structure: `/:lang/*` where lang is `ru` or `en`. Nested routes: `/` (Home), `/about`, `/order`, `/suppliers`, `/contacts`, `/faq`. Redirect root `/` to `/ru`. Wrap everything in a `Layout` component with Header and Footer.
