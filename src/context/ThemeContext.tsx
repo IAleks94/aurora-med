@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -60,6 +61,30 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return stored === 'dark' || stored === 'light'
   })
 
+  useEffect(() => {
+    function onStorage(e: StorageEvent) {
+      if (e.storageArea !== window.localStorage) return
+      if (
+        e.key !== null &&
+        e.key !== STORAGE_THEME &&
+        e.key !== STORAGE_OVERRIDE
+      ) {
+        return
+      }
+      const override = window.localStorage.getItem(STORAGE_OVERRIDE) === 'true'
+      const stored = window.localStorage.getItem(STORAGE_THEME)
+      if (override && (stored === 'dark' || stored === 'light')) {
+        setUserHasOverriddenTheme(true)
+        setThemeModeState(stored)
+      } else if (!override) {
+        setUserHasOverriddenTheme(false)
+        setThemeModeState(getDefaultThemeModeForLanguage(readStoredLanguage()))
+      }
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
+
   const styledTheme = themeMode === 'light' ? lightTheme : darkTheme
 
   const persistUserMode = useCallback((mode: ThemeMode) => {
@@ -90,7 +115,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const syncThemeFromLanguage = useCallback((lang: string) => {
     if (typeof window === 'undefined') return
     if (userHasOverriddenTheme) return
-    if (window.localStorage.getItem(STORAGE_OVERRIDE) === 'true') return
+    if (window.localStorage.getItem(STORAGE_OVERRIDE) === 'true') {
+      const stored = window.localStorage.getItem(STORAGE_THEME)
+      if (stored === 'dark' || stored === 'light') {
+        setUserHasOverriddenTheme(true)
+        setThemeModeState(stored)
+      }
+      return
+    }
     const mode = getDefaultThemeModeForLanguage(lang)
     try {
       window.localStorage.setItem(STORAGE_THEME, mode)

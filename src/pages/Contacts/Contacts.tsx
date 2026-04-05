@@ -68,6 +68,7 @@ export function Contacts() {
     setSubmitError(null)
     setSuccess(false)
     if (data.hpField?.trim()) {
+      setSubmitError(t('contacts.honeypotBlocked'))
       return
     }
     try {

@@ -63,6 +63,13 @@ describe('App routing', () => {
     ).toBeInTheDocument()
   })
 
+  it('redirects bare long slug without locale to /ru/<slug> (not home)', async () => {
+    renderApp('/privacy')
+    await waitFor(() => {
+      expect(within(screen.getByRole('main')).getByTestId('not-found-page')).toBeInTheDocument()
+    })
+  })
+
   it('redirects unsupported language but keeps the path after the first segment', async () => {
     renderApp('/xx/about')
     await waitFor(() => {

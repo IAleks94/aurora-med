@@ -62,6 +62,7 @@ export function Suppliers() {
     setSubmitError(null)
     setSuccess(false)
     if (data.hpField?.trim()) {
+      setSubmitError(t('suppliers.honeypotBlocked'))
       return
     }
     try {

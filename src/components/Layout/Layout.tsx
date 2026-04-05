@@ -42,6 +42,35 @@ export function Layout() {
         />
       )
     }
+    const segments = location.pathname.split('/').filter(Boolean)
+    if (segments.length === 1) {
+      const seg = segments[0]
+      if (!SUPPORTED_LANGS.has(seg) && !KNOWN_PAGE_SLUGS.has(seg)) {
+        // Two-letter segment that is not ru/en: treat as mistaken locale (e.g. /xx) → home.
+        if (seg.length === 2 && /^[a-z]{2}$/i.test(seg)) {
+          return (
+            <Navigate
+              to={{
+                pathname: '/ru',
+                search: location.search,
+                hash: location.hash,
+              }}
+              replace
+            />
+          )
+        }
+        return (
+          <Navigate
+            to={{
+              pathname: `/ru/${seg}`,
+              search: location.search,
+              hash: location.hash,
+            }}
+            replace
+          />
+        )
+      }
+    }
     const rest = location.pathname.replace(/^\/[^/]+/, '') || '/'
     const pathname = `/ru${rest === '/' ? '' : rest}`
     return (

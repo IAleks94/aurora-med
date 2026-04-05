@@ -62,6 +62,7 @@ export function OrderForm() {
     setSubmitError(null)
     setSuccess(false)
     if (data.hpField?.trim()) {
+      setSubmitError(t('order.honeypotBlocked'))
       return
     }
     try {

@@ -118,6 +118,18 @@ export function resolveTemplateId(
     return env.defaultTemplateId
   }
 
+  const anyOtherTemplate = FORM_TYPE_KEYS.map((k) => env.byFormType[k]).find(
+    Boolean,
+  )
+  if (anyOtherTemplate) {
+    if (import.meta.env.DEV) {
+      console.warn(
+        `[EmailJS] No default template id; using another configured template for form_type "${formType}". Set VITE_EMAILJS_TEMPLATE_ID or VITE_EMAILJS_TEMPLATE_ID_${FORM_ENV_SUFFIX[key]}.`,
+      )
+    }
+    return anyOtherTemplate
+  }
+
   if (import.meta.env.DEV) {
     console.error(
       `[EmailJS] Set VITE_EMAILJS_TEMPLATE_ID_${FORM_ENV_SUFFIX[key]} for form_type "${formType}", or set VITE_EMAILJS_TEMPLATE_ID as fallback when using per-form template variables.`,

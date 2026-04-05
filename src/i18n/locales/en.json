@@ -99,6 +99,7 @@
     "validationEmail": "Enter a valid email address",
     "validationMaxLength": "This field is too long",
     "honeypotLabel": "Leave this field blank",
+    "honeypotBlocked": "The form could not be sent. Clear any hidden fields and try again.",
     "formRateLimit": "Too many submissions. Please wait a moment and try again."
   },
   "suppliers": {
@@ -116,7 +117,8 @@
     "submit": "Send",
     "sending": "Sending…",
     "success": "Message sent.",
-    "error": "Send failed. Please try again later."
+    "error": "Send failed. Please try again later.",
+    "honeypotBlocked": "The form could not be sent. Clear any hidden fields and try again."
   },
   "contacts": {
     "pageTitle": "Contacts",
@@ -134,7 +136,8 @@
     "submit": "Send",
     "sending": "Sending…",
     "success": "Message sent.",
-    "error": "Send failed."
+    "error": "Send failed.",
+    "honeypotBlocked": "The form could not be sent. Clear any hidden fields and try again."
   },
   "faq": {
     "pageTitle": "Frequently asked questions",

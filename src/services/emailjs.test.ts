@@ -65,6 +65,23 @@ describe('emailjs service', () => {
     warn.mockRestore()
   })
 
+  it('resolveTemplateId falls back to any other configured template when default is missing', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    expect(
+      resolveTemplateId(
+        { form_type: 'order_request', email: 'z@z.com' },
+        {
+          defaultTemplateId: undefined,
+          byFormType: {
+            order_request: undefined,
+            contact_feedback: 'contact_tpl',
+          },
+        },
+      ),
+    ).toBe('contact_tpl')
+    warn.mockRestore()
+  })
+
   it('resolveTemplateId uses default template when no per-form ids are set', () => {
     expect(
       resolveTemplateId(
