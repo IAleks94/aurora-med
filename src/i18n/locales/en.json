@@ -132,6 +132,7 @@
   },
   "faq": {
     "pageTitle": "Frequently asked questions",
+    "intro": "Answers for funds, suppliers, and general topics.",
     "categories": {
       "funds": "For funds",
       "suppliers": "For suppliers",

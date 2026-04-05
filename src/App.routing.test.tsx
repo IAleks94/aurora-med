@@ -30,7 +30,11 @@ describe('App routing', () => {
 
   it('renders FAQ at /ru/faq', () => {
     renderApp('/ru/faq')
-    expect(within(screen.getByRole('main')).getByText('FAQ')).toBeInTheDocument()
+    const main = screen.getByRole('main')
+    expect(within(main).getByTestId('faq-page')).toBeInTheDocument()
+    expect(
+      within(main).getByRole('heading', { name: /частые вопросы/i }),
+    ).toBeInTheDocument()
   })
 
   it('redirects unsupported language segment to /ru', async () => {

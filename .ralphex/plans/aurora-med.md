@@ -170,14 +170,14 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 16: Build FAQ page with accordion
-- [ ] Create full `src/pages/FAQ/FAQ.tsx` and `FAQ.styled.ts`
-- [ ] Use `Accordion` component for Q&A items
-- [ ] Create FAQ data in i18n files: at least 6-8 questions split into categories — "Для фондов" / "For funds", "Для поставщиков" / "For suppliers", "Общие" / "General"
-- [ ] Example questions: "Какие лекарства можно заказать?", "Сколько времени занимает поставка?", "Нужна ли лицензия для заказа?", "Как стать поставщиком?", etc.
-- [ ] Category headers above their accordion groups
-- [ ] All text from i18n translations
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create full `src/pages/FAQ/FAQ.tsx` and `FAQ.styled.ts`
+- [x] Use `Accordion` component for Q&A items
+- [x] Create FAQ data in i18n files: at least 6-8 questions split into categories — "Для фондов" / "For funds", "Для поставщиков" / "For suppliers", "Общие" / "General"
+- [x] Example questions: "Какие лекарства можно заказать?", "Сколько времени занимает поставка?", "Нужна ли лицензия для заказа?", "Как стать поставщиком?", etc.
+- [x] Category headers above their accordion groups
+- [x] All text from i18n translations
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 17: Responsive design, animations, and final polish
 - [ ] Review ALL pages and components for mobile responsiveness (320px - 480px - 768px - 1024px - 1280px)
