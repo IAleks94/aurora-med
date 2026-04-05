@@ -91,7 +91,9 @@
     "submit": "Submit request",
     "sending": "Sending…",
     "success": "Your request was sent. We will contact you shortly.",
-    "error": "Could not submit the form. Please try again later or email us."
+    "error": "Could not submit the form. Please try again later or email us.",
+    "validationRequired": "This field is required",
+    "validationEmail": "Enter a valid email address"
   },
   "suppliers": {
     "pageTitle": "For suppliers",

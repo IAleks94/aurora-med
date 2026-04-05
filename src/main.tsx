@@ -3,7 +3,10 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import '@/i18n'
 import { ThemeProvider } from '@/context'
+import { initEmailJS } from '@/services'
 import App from './App.tsx'
+
+initEmailJS()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

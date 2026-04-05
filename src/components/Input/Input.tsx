@@ -7,6 +7,7 @@ export type InputProps = {
   error?: string
   type?: HTMLInputTypeAttribute
   placeholder?: string
+  autoComplete?: string
   multiline?: boolean
   rows?: number
   register?: UseFormRegisterReturn
@@ -18,6 +19,7 @@ export function Input({
   error,
   type = 'text',
   placeholder,
+  autoComplete,
   multiline = false,
   rows = 4,
   register,
@@ -36,6 +38,7 @@ export function Input({
           $hasError={hasError}
           rows={rows}
           placeholder={placeholder}
+          autoComplete={autoComplete}
           aria-invalid={hasError}
           aria-describedby={hasError ? `${id}-error` : undefined}
           {...register}
@@ -46,6 +49,7 @@ export function Input({
           type={type}
           $hasError={hasError}
           placeholder={placeholder}
+          autoComplete={autoComplete}
           aria-invalid={hasError}
           aria-describedby={hasError ? `${id}-error` : undefined}
           {...register}

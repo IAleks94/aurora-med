@@ -33,6 +33,10 @@ describe('App', () => {
 
   it('renders OrderForm at /ru/order', () => {
     renderApp('/ru/order')
-    expect(screen.getByText('OrderForm')).toBeInTheDocument()
+    expect(
+      within(screen.getByTestId('order-form-page')).getByRole('heading', {
+        name: /оставить запрос/i,
+      }),
+    ).toBeInTheDocument()
   })
 })

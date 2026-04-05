@@ -9,6 +9,11 @@ export default mergeConfig(
       globals: true,
       environment: 'jsdom',
       setupFiles: './src/test/setup.ts',
+      env: {
+        VITE_EMAILJS_SERVICE_ID: 'test_service',
+        VITE_EMAILJS_TEMPLATE_ID: 'test_template',
+        VITE_EMAILJS_PUBLIC_KEY: 'test_public_key',
+      },
     },
   }),
 )

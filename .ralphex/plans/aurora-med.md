@@ -143,14 +143,14 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 13: Build Order Form page with validation and EmailJS
-- [ ] Create `src/services/emailjs.ts` — helper function `sendEmail(templateParams: Record<string, string>)` that calls `emailjs.send()` with env vars. Handle success/error. Export also an `initEmailJS()` function called once in main.tsx.
-- [ ] Create `src/services/index.ts` barrel export
-- [ ] Create full `src/pages/OrderForm/OrderForm.tsx` and `OrderForm.styled.ts`
-- [ ] Form fields using react-hook-form: organization name (required), contact person name (required), email (required, email validation), phone (required), order description (textarea, required), list of medications (textarea, optional)
-- [ ] Submit button sends data via EmailJS `sendEmail()`. Show loading spinner during send, success message on completion, error message on failure.
-- [ ] Style form: clean, professional. Input labels above fields. Generous spacing. Error messages in red below fields.
-- [ ] Verify form validation works and `npm run build` passes
-- [ ] Mark completed
+- [x] Create `src/services/emailjs.ts` — helper function `sendEmail(templateParams: Record<string, string>)` that calls `emailjs.send()` with env vars. Handle success/error. Export also an `initEmailJS()` function called once in main.tsx.
+- [x] Create `src/services/index.ts` barrel export
+- [x] Create full `src/pages/OrderForm/OrderForm.tsx` and `OrderForm.styled.ts`
+- [x] Form fields using react-hook-form: organization name (required), contact person name (required), email (required, email validation), phone (required), order description (textarea, required), list of medications (textarea, optional)
+- [x] Submit button sends data via EmailJS `sendEmail()`. Show loading spinner during send, success message on completion, error message on failure.
+- [x] Style form: clean, professional. Input labels above fields. Generous spacing. Error messages in red below fields.
+- [x] Verify form validation works and `npm run build` passes
+- [x] Mark completed
 
 ### Task 14: Build Suppliers page with contact form
 - [ ] Create full `src/pages/Suppliers/Suppliers.tsx` and `Suppliers.styled.ts`
