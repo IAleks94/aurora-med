@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { ThemeProvider } from '@/context'
 import App from './App'
@@ -17,21 +17,22 @@ function renderApp(initialPath: string) {
 describe('App routing', () => {
   it('renders Suppliers at /ru/suppliers', () => {
     renderApp('/ru/suppliers')
-    expect(screen.getByText('Suppliers')).toBeInTheDocument()
+    expect(within(screen.getByRole('main')).getByText('Suppliers')).toBeInTheDocument()
   })
 
   it('renders Contacts at /en/contacts', () => {
     renderApp('/en/contacts')
-    expect(screen.getByText('Contacts')).toBeInTheDocument()
+    expect(within(screen.getByRole('main')).getByText('Contacts')).toBeInTheDocument()
   })
 
   it('renders FAQ at /ru/faq', () => {
     renderApp('/ru/faq')
-    expect(screen.getByText('FAQ')).toBeInTheDocument()
+    expect(within(screen.getByRole('main')).getByText('FAQ')).toBeInTheDocument()
   })
 
   it('redirects unsupported language segment to /ru', async () => {
-    const { findByText } = renderApp('/xx')
-    expect(await findByText('Home')).toBeInTheDocument()
+    const { findByRole } = renderApp('/xx')
+    const main = await findByRole('main')
+    expect(within(main).getByText('Home')).toBeInTheDocument()
   })
 })

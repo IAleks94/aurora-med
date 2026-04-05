@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { ThemeProvider } from '@/context'
 import App from './App'
@@ -22,7 +22,7 @@ describe('App', () => {
 
   it('renders About at /en/about', () => {
     renderApp('/en/about')
-    expect(screen.getByText('About')).toBeInTheDocument()
+    expect(within(screen.getByRole('main')).getByText('About')).toBeInTheDocument()
   })
 
   it('renders OrderForm at /ru/order', () => {

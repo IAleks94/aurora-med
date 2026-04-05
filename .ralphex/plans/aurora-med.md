@@ -64,17 +64,17 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 5: Build Header component with navigation, language and theme toggles
-- [ ] Create `src/components/Header/Header.tsx` and `src/components/Header/Header.styled.ts`
-- [ ] Header layout: logo "AURORA+" on the left (text-based, the "+" is styled as a decorative cross/star), navigation links in the center, language switch (RU/EN) and theme toggle (sun/moon icon) on the right
-- [ ] Logo styling: `Urbanist` font, uppercase, letter-spacing 3-4px. "AURORA" in regular weight, "+" as a decorative element (can be a small SVG star or styled span)
-- [ ] Navigation links: Home, About, For Suppliers, Contacts, FAQ — use `react-router-dom` `NavLink` with active state styling. Text: `Urbanist Medium`, uppercase, letter-spacing 1-2px, font-size 14px
-- [ ] Language toggle: simple "RU / EN" text buttons. Active language is bold/highlighted. On click: navigate to the same page but with the other language prefix, change i18n language, and set default theme for that language (unless user overrode theme manually)
-- [ ] Theme toggle: sun icon (for light mode) / moon icon (for dark mode). Simple SVG icons inline. On click: toggle theme and mark as "user-overridden" in localStorage
-- [ ] Mobile: hamburger menu icon that opens a slide-out or dropdown menu with all links + toggles
-- [ ] Styled according to theme: in dark mode — transparent/dark background, white text; in light mode — transparent/light background, dark text. Subtle border-bottom or background blur
-- [ ] Create `src/components/Header/index.ts`
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create `src/components/Header/Header.tsx` and `src/components/Header/Header.styled.ts`
+- [x] Header layout: logo "AURORA+" on the left (text-based, the "+" is styled as a decorative cross/star), navigation links in the center, language switch (RU/EN) and theme toggle (sun/moon icon) on the right
+- [x] Logo styling: `Urbanist` font, uppercase, letter-spacing 3-4px. "AURORA" in regular weight, "+" as a decorative element (can be a small SVG star or styled span)
+- [x] Navigation links: Home, About, For Suppliers, Contacts, FAQ — use `react-router-dom` `NavLink` with active state styling. Text: `Urbanist Medium`, uppercase, letter-spacing 1-2px, font-size 14px
+- [x] Language toggle: simple "RU / EN" text buttons. Active language is bold/highlighted. On click: navigate to the same page but with the other language prefix, change i18n language, and set default theme for that language (unless user overrode theme manually)
+- [x] Theme toggle: sun icon (for light mode) / moon icon (for dark mode). Simple SVG icons inline. On click: toggle theme and mark as "user-overridden" in localStorage
+- [x] Mobile: hamburger menu icon that opens a slide-out or dropdown menu with all links + toggles
+- [x] Styled according to theme: in dark mode — transparent/dark background, white text; in light mode — transparent/light background, dark text. Subtle border-bottom or background blur
+- [x] Create `src/components/Header/index.ts`
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 6: Build Footer component
 - [ ] Create `src/components/Footer/Footer.tsx` and `src/components/Footer/Footer.styled.ts`
