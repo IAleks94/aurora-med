@@ -85,15 +85,15 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 7: Build reusable UI components (Button, Input, Card, SectionTitle, Accordion, StatCounter)
-- [ ] Create `src/components/Button/Button.tsx` + `Button.styled.ts` + `index.ts`. Props: variant ('primary' | 'secondary' | 'outline'), size ('sm' | 'md' | 'lg'), fullWidth, children, onClick, type. Primary: filled with theme accent color, border. Secondary/outline: transparent with border. Hover states with smooth transitions. Style from references: rounded corners (~8px), uppercase text, letter-spacing.
-- [ ] Create `src/components/Input/Input.tsx` + `Input.styled.ts` + `index.ts`. Props: label, error, type, placeholder, register (for react-hook-form). Also a Textarea variant. Styled: clean borders, focus state, error state with red border and message.
-- [ ] Create `src/components/Card/Card.tsx` + `Card.styled.ts` + `index.ts`. A versatile container with optional padding, border, hover effect. Used for team members, process steps, etc.
-- [ ] Create `src/components/SectionTitle/SectionTitle.tsx` + `SectionTitle.styled.ts` + `index.ts`. Centered title with decorative "+" symbols on both sides, matching the reference design ("+ How it works +"). Props: children. Styled: `Urbanist SemiBold`, uppercase, letter-spacing, decorative elements.
-- [ ] Create `src/components/Accordion/Accordion.tsx` + `Accordion.styled.ts` + `index.ts`. Props: items (array of { question, answer }). Expand/collapse with smooth animation. Plus/minus or chevron icon for toggle state.
-- [ ] Create `src/components/StatCounter/StatCounter.tsx` + `StatCounter.styled.ts` + `index.ts`. Props: value (string like "48" or "30+"), label. Large bold number on top, small label below. Separated by vertical dividers when used in a row.
-- [ ] Create `src/components/index.ts` barrel export for all components
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create `src/components/Button/Button.tsx` + `Button.styled.ts` + `index.ts`. Props: variant ('primary' | 'secondary' | 'outline'), size ('sm' | 'md' | 'lg'), fullWidth, children, onClick, type. Primary: filled with theme accent color, border. Secondary/outline: transparent with border. Hover states with smooth transitions. Style from references: rounded corners (~8px), uppercase text, letter-spacing.
+- [x] Create `src/components/Input/Input.tsx` + `Input.styled.ts` + `index.ts`. Props: label, error, type, placeholder, register (for react-hook-form). Also a Textarea variant. Styled: clean borders, focus state, error state with red border and message.
+- [x] Create `src/components/Card/Card.tsx` + `Card.styled.ts` + `index.ts`. A versatile container with optional padding, border, hover effect. Used for team members, process steps, etc.
+- [x] Create `src/components/SectionTitle/SectionTitle.tsx` + `SectionTitle.styled.ts` + `index.ts`. Centered title with decorative "+" symbols on both sides, matching the reference design ("+ How it works +"). Props: children. Styled: `Urbanist SemiBold`, uppercase, letter-spacing, decorative elements.
+- [x] Create `src/components/Accordion/Accordion.tsx` + `Accordion.styled.ts` + `index.ts`. Props: items (array of { question, answer }). Expand/collapse with smooth animation. Plus/minus or chevron icon for toggle state.
+- [x] Create `src/components/StatCounter/StatCounter.tsx` + `StatCounter.styled.ts` + `index.ts`. Props: value (string like "48" or "30+"), label. Large bold number on top, small label below. Separated by vertical dividers when used in a row.
+- [x] Create `src/components/index.ts` barrel export for all components
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 8: Build Home page — Hero section with starry background
 - [ ] Create `src/pages/Home/Home.tsx` and `src/pages/Home/Home.styled.ts`
