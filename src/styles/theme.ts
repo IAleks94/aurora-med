@@ -24,6 +24,7 @@ export const radii = {
 } as const
 
 export interface Theme {
+  mode: ThemeMode
   colors: {
     background: string
     text: string
@@ -41,6 +42,7 @@ export interface Theme {
 }
 
 export const lightTheme: Theme = {
+  mode: 'light',
   colors: {
     background: 'linear-gradient(180deg, #F5F0E8 0%, #FAF7F2 100%)',
     text: '#0B1026',
@@ -58,6 +60,7 @@ export const lightTheme: Theme = {
 }
 
 export const darkTheme: Theme = {
+  mode: 'dark',
   colors: {
     background: 'linear-gradient(180deg, #0B1026 0%, #0F1A3E 100%)',
     text: '#FFFFFF',

@@ -112,7 +112,10 @@ export function OrderForm() {
                 error={errors.organization?.message}
                 register={register('organization', {
                   required: t('order.validationRequired'),
-                  maxLength: 200,
+                  maxLength: {
+                    value: 200,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -120,7 +123,10 @@ export function OrderForm() {
                 error={errors.contactName?.message}
                 register={register('contactName', {
                   required: t('order.validationRequired'),
-                  maxLength: 120,
+                  maxLength: {
+                    value: 120,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -130,7 +136,10 @@ export function OrderForm() {
                 error={errors.email?.message}
                 register={register('email', {
                   required: t('order.validationRequired'),
-                  maxLength: 254,
+                  maxLength: {
+                    value: 254,
+                    message: t('order.validationMaxLength'),
+                  },
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: t('order.validationEmail'),
@@ -144,7 +153,10 @@ export function OrderForm() {
                 error={errors.phone?.message}
                 register={register('phone', {
                   required: t('order.validationRequired'),
-                  maxLength: 40,
+                  maxLength: {
+                    value: 40,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -154,7 +166,10 @@ export function OrderForm() {
                 error={errors.description?.message}
                 register={register('description', {
                   required: t('order.validationRequired'),
-                  maxLength: 5000,
+                  maxLength: {
+                    value: 5000,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -162,7 +177,12 @@ export function OrderForm() {
                 multiline
                 rows={4}
                 error={errors.medications?.message}
-                register={register('medications', { maxLength: 5000 })}
+                register={register('medications', {
+                  maxLength: {
+                    value: 5000,
+                    message: t('order.validationMaxLength'),
+                  },
+                })}
               />
             </FormFields>
 

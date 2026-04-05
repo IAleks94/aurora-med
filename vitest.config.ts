@@ -12,6 +12,9 @@ export default mergeConfig(
       env: {
         VITE_EMAILJS_SERVICE_ID: 'test_service',
         VITE_EMAILJS_TEMPLATE_ID: 'test_template',
+        VITE_EMAILJS_TEMPLATE_ID_ORDER: 'test_template_order',
+        VITE_EMAILJS_TEMPLATE_ID_CONTACT: 'test_template_contact',
+        VITE_EMAILJS_TEMPLATE_ID_SUPPLIER: 'test_template_supplier',
         VITE_EMAILJS_PUBLIC_KEY: 'test_public_key',
       },
     },

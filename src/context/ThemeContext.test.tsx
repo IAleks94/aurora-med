@@ -32,6 +32,18 @@ describe('ThemeProvider', () => {
     expect(screen.getByTestId('mode')).toHaveTextContent('light')
   })
 
+  it('clears invalid override flag and follows language default', () => {
+    localStorage.setItem('aurora-theme-user-override', 'true')
+    localStorage.setItem('aurora-theme', 'not-a-mode')
+    render(
+      <ThemeProvider>
+        <ThemeProbe />
+      </ThemeProvider>,
+    )
+    expect(localStorage.getItem('aurora-theme-user-override')).toBeNull()
+    expect(screen.getByTestId('mode')).toHaveTextContent('light')
+  })
+
   it('toggles theme and persists user override', () => {
     render(
       <ThemeProvider>

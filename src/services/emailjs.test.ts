@@ -43,6 +43,21 @@ describe('emailjs service', () => {
     )
   })
 
+  it('uses per-form template id when form_type is set', async () => {
+    await sendEmail({
+      form_type: 'order_request',
+      organization_name: 'Org',
+      contact_name: 'Jane',
+      email: 'j@example.com',
+    })
+    expect(mocked.send).toHaveBeenCalledWith(
+      'test_service',
+      'test_template_order',
+      expect.objectContaining({ form_type: 'order_request' }),
+      { publicKey: 'test_public_key' },
+    )
+  })
+
   it('sendEmail throws when EmailJS returns non-2xx status', async () => {
     mocked.send.mockResolvedValueOnce({ status: 500, text: 'err' })
     await expect(

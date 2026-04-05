@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 
-const isDark = (t: { colors: { text: string } }) => t.colors.text === '#FFFFFF'
+const isDark = (t: { mode: 'light' | 'dark' }) => t.mode === 'dark'
 
 export const Hero = styled.section`
   position: relative;

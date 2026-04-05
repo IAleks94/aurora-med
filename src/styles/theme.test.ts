@@ -29,5 +29,7 @@ describe('theme', () => {
     }
     expect(lightTheme.fontFamily).toContain('Urbanist')
     expect(darkTheme.fontFamily).toContain('Urbanist')
+    expect(lightTheme.mode).toBe('light')
+    expect(darkTheme.mode).toBe('dark')
   })
 })

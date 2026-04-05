@@ -143,7 +143,10 @@ export function Contacts() {
                 error={errors.name?.message}
                 register={register('name', {
                   required: t('order.validationRequired'),
-                  maxLength: 120,
+                  maxLength: {
+                    value: 120,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -153,7 +156,10 @@ export function Contacts() {
                 error={errors.email?.message}
                 register={register('email', {
                   required: t('order.validationRequired'),
-                  maxLength: 254,
+                  maxLength: {
+                    value: 254,
+                    message: t('order.validationMaxLength'),
+                  },
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: t('order.validationEmail'),
@@ -167,7 +173,10 @@ export function Contacts() {
                 error={errors.message?.message}
                 register={register('message', {
                   required: t('order.validationRequired'),
-                  maxLength: 5000,
+                  maxLength: {
+                    value: 5000,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
             </FormFields>

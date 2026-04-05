@@ -27,7 +27,7 @@ export function Input({
 }: InputProps) {
   const uid = useId()
   const id = idProp ?? uid
-  const hasError = Boolean(error)
+  const hasError = Boolean(error?.trim())
 
   return (
     <Root>

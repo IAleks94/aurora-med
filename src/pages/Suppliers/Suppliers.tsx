@@ -122,7 +122,10 @@ export function Suppliers() {
                 error={errors.company?.message}
                 register={register('company', {
                   required: t('order.validationRequired'),
-                  maxLength: 200,
+                  maxLength: {
+                    value: 200,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -130,7 +133,10 @@ export function Suppliers() {
                 error={errors.country?.message}
                 register={register('country', {
                   required: t('order.validationRequired'),
-                  maxLength: 100,
+                  maxLength: {
+                    value: 100,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -138,7 +144,10 @@ export function Suppliers() {
                 error={errors.contactPerson?.message}
                 register={register('contactPerson', {
                   required: t('order.validationRequired'),
-                  maxLength: 120,
+                  maxLength: {
+                    value: 120,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
               <Input
@@ -148,7 +157,10 @@ export function Suppliers() {
                 error={errors.email?.message}
                 register={register('email', {
                   required: t('order.validationRequired'),
-                  maxLength: 254,
+                  maxLength: {
+                    value: 254,
+                    message: t('order.validationMaxLength'),
+                  },
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: t('order.validationEmail'),
@@ -162,7 +174,10 @@ export function Suppliers() {
                 error={errors.message?.message}
                 register={register('message', {
                   required: t('order.validationRequired'),
-                  maxLength: 5000,
+                  maxLength: {
+                    value: 5000,
+                    message: t('order.validationMaxLength'),
+                  },
                 })}
               />
             </FormFields>

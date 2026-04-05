@@ -32,6 +32,11 @@ function getInitialThemeMode(): ThemeMode {
   if (window.localStorage.getItem(STORAGE_OVERRIDE) === 'true') {
     const stored = window.localStorage.getItem(STORAGE_THEME)
     if (stored === 'dark' || stored === 'light') return stored
+    try {
+      window.localStorage.removeItem(STORAGE_OVERRIDE)
+    } catch {
+      // ignore
+    }
   }
   return getDefaultThemeModeForLanguage(readStoredLanguage())
 }
@@ -50,7 +55,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [themeMode, setThemeModeState] = useState<ThemeMode>(getInitialThemeMode)
   const [userHasOverriddenTheme, setUserHasOverriddenTheme] = useState(() => {
     if (typeof window === 'undefined') return false
-    return window.localStorage.getItem(STORAGE_OVERRIDE) === 'true'
+    if (window.localStorage.getItem(STORAGE_OVERRIDE) !== 'true') return false
+    const stored = window.localStorage.getItem(STORAGE_THEME)
+    return stored === 'dark' || stored === 'light'
   })
 
   const styledTheme = themeMode === 'light' ? lightTheme : darkTheme
