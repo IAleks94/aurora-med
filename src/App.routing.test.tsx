@@ -17,7 +17,10 @@ function renderApp(initialPath: string) {
 describe('App routing', () => {
   it('renders Suppliers at /ru/suppliers', () => {
     renderApp('/ru/suppliers')
-    expect(within(screen.getByRole('main')).getByText('Suppliers')).toBeInTheDocument()
+    expect(within(screen.getByRole('main')).getByTestId('suppliers-page')).toBeInTheDocument()
+    expect(
+      within(screen.getByRole('main')).getByRole('heading', { name: /поставщикам/i }),
+    ).toBeInTheDocument()
   })
 
   it('renders Contacts at /en/contacts', () => {

@@ -162,12 +162,12 @@ Build the Aurora Med B2B website — a bilingual (RU/EN) platform for ordering r
 - [x] Mark completed
 
 ### Task 15: Build Contacts page
-- [ ] Create full `src/pages/Contacts/Contacts.tsx` and `Contacts.styled.ts`
-- [ ] Contact information display: email, phone, address (use placeholder data for now)
-- [ ] Simple contact/feedback form: name, email, message. Submit via EmailJS.
-- [ ] All text from i18n translations
-- [ ] Verify `npm run build` passes
-- [ ] Mark completed
+- [x] Create full `src/pages/Contacts/Contacts.tsx` and `Contacts.styled.ts`
+- [x] Contact information display: email, phone, address (use placeholder data for now)
+- [x] Simple contact/feedback form: name, email, message. Submit via EmailJS.
+- [x] All text from i18n translations
+- [x] Verify `npm run build` passes
+- [x] Mark completed
 
 ### Task 16: Build FAQ page with accordion
 - [ ] Create full `src/pages/FAQ/FAQ.tsx` and `FAQ.styled.ts`
