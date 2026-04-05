@@ -5,6 +5,10 @@ import { Card } from '@/components/Card'
 import { RevealOnScroll } from '@/components/RevealOnScroll'
 import { SectionTitle } from '@/components/SectionTitle'
 import { StatCounter } from '@/components/StatCounter'
+import stepImg1 from '@/assets/images/process/step-1.png'
+import stepImg2 from '@/assets/images/process/step-2.png'
+import stepImg3 from '@/assets/images/process/step-3.png'
+import stepImg4 from '@/assets/images/process/step-4.png'
 import alexandraKireeva from '@/assets/images/team/alexandra-kireeva.png'
 import irinaKorotkova from '@/assets/images/team/irina-korotkova.png'
 import sofiaFleishman from '@/assets/images/team/sofia-fleishman.png'
@@ -23,6 +27,7 @@ import {
   ProcessInner,
   ProcessSection,
   ProcessStep,
+  ProcessStepImg,
   ProcessStepLabel,
   ProcessSteps,
   ProcessVerticalConnector,
@@ -76,6 +81,8 @@ export function Home() {
   const scrollToProcess = useCallback(() => {
     document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' })
   }, [])
+
+  const STEP_IMAGES = [stepImg1, stepImg2, stepImg3, stepImg4]
 
   const processSteps = [
     t('process.step1'),
@@ -140,7 +147,9 @@ export function Home() {
               {processSteps.flatMap((label, index) => {
                 const nodes = [
                   <ProcessStep key={`step-${index}`}>
-                    <ProcessIllustration aria-hidden>{index + 1}</ProcessIllustration>
+                    <ProcessIllustration aria-hidden>
+                      <ProcessStepImg src={STEP_IMAGES[index]} alt="" />
+                    </ProcessIllustration>
                     <ProcessStepLabel>{label}</ProcessStepLabel>
                   </ProcessStep>,
                 ]

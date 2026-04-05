@@ -349,18 +349,15 @@ export const ProcessVerticalConnector = styled.div`
 export const ProcessIllustration = styled.div`
   width: 7.5rem;
   height: 7.5rem;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: ${({ theme }) => theme.fontFamily};
-  font-weight: 600;
-  font-size: 1.75rem;
-  letter-spacing: 0.04em;
-  color: ${({ theme }) => theme.colors.text};
-  background: ${({ theme }) => theme.colors.background};
-  border: 2px dashed ${({ theme }) => theme.colors.decorative};
-  box-shadow: ${({ theme }) => theme.colors.cardShadow};
+`
+
+export const ProcessStepImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 `
 
 export const ProcessStepLabel = styled.p`
@@ -418,6 +415,7 @@ export const TeamPortraitImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
 `
 
