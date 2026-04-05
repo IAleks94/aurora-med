@@ -358,6 +358,7 @@ export const ProcessStepImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: ${({ theme }) => (isDark(theme) ? 'invert(1)' : 'none')};
 `
 
 export const ProcessStepLabel = styled.p`
