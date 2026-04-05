@@ -21,6 +21,15 @@ export function RevealOnScroll({
     const el = ref.current
     if (!el) return
 
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      setVisible(true)
+      return
+    }
+
     if (typeof IntersectionObserver === 'undefined') {
       setVisible(true)
       return
@@ -41,7 +50,7 @@ export function RevealOnScroll({
   }, [rootMargin, threshold])
 
   return (
-    <Wrapper ref={ref} $visible={visible} className={className}>
+    <Wrapper ref={ref} $visible={visible} className={className} inert={!visible}>
       {children}
     </Wrapper>
   )

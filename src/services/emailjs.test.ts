@@ -71,4 +71,11 @@ describe('emailjs service', () => {
       sendEmail({ organization_name: 'X', contact_name: 'Y', email: 'z@z.com' }),
     ).resolves.toBeUndefined()
   })
+
+  it('sendEmail throws when EmailJS returns non-finite status', async () => {
+    mocked.send.mockResolvedValueOnce({ status: Number.NaN, text: 'ok' })
+    await expect(
+      sendEmail({ organization_name: 'X', contact_name: 'Y', email: 'z@z.com' }),
+    ).rejects.toThrow(/EmailJS send failed/)
+  })
 })

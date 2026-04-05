@@ -157,7 +157,7 @@ export function Header() {
             <LogoMark />
           </LogoLink>
 
-          <DesktopNav aria-label={t('language.switch')}>
+          <DesktopNav aria-label={t('nav.primary')}>
             {NAV_KEYS.map(({ key, path }) => (
               <NavItem
                 key={key}

@@ -1,5 +1,13 @@
 import emailjs from '@emailjs/browser'
 
+/**
+ * Sends fields to EmailJS; dashboard templates must use matching variable names.
+ *
+ * Common keys: `form_type` (`order_request` | `contact_feedback` | `supplier_inquiry`).
+ * - order_request: organization_name, contact_name, email, phone, order_description, medications
+ * - contact_feedback: contact_name, email, message
+ * - supplier_inquiry: company_name, country, contact_person, email, message
+ */
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined
@@ -44,7 +52,8 @@ export async function sendEmail(
     templateParams,
     { publicKey: PUBLIC_KEY },
   )
-  if (result.status < 200 || result.status >= 300) {
-    throw new Error(`EmailJS send failed with status ${result.status}`)
+  const status = result.status
+  if (!Number.isFinite(status) || status < 200 || status >= 300) {
+    throw new Error(`EmailJS send failed with status ${String(status)}`)
   }
 }

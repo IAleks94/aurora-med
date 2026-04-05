@@ -1,5 +1,6 @@
 {
   "nav": {
+    "primary": "Main navigation",
     "home": "Home",
     "about": "About",
     "order": "Order",
